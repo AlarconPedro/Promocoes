@@ -1,13 +1,14 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
+import 'package:promocoes/classes/layouts.dart';
 
 import '../../classes/classes.dart';
 import '../widgets/botao_container.dart';
 import '../widgets/campo_formulario.dart';
 
 class CadastroParticipantes extends StatefulWidget {
-  const CadastroParticipantes({super.key});
+  Layout? layout;
+  CadastroParticipantes({super.key, this.layout});
 
   @override
   State<CadastroParticipantes> createState() => _CadastroParticipantesState();
@@ -95,54 +96,6 @@ class _CadastroParticipantesState extends State<CadastroParticipantes> {
         ),
       ),
     );
-    // return Container(
-    //   color: Cores.marrom,
-    //   child: Column(
-    //     mainAxisAlignment: MainAxisAlignment.center,
-    //     children: [
-    //       Container(
-    //         width: MediaQuery.of(context).size.width,
-    //         height: MediaQuery.of(context).size.height,
-    //         color: Cores.marrom,
-    //         child: Column(
-    //           mainAxisAlignment: MainAxisAlignment.center,
-    //           children: [
-    //             Container(
-    //               width: MediaQuery.of(context).size.width * 0.8,
-    //               height: MediaQuery.of(context).size.height * 0.8,
-    //               color: Cores.branco,
-    //               child: Column(
-    //                 mainAxisAlignment: MainAxisAlignment.center,
-    //                 children: [
-    //                   CampoFormulario(label: 'Nome'),
-    //                   CampoFormulario(label: 'E-mail'),
-    //                   CampoFormulario(label: 'Telefone'),
-    //                   CampoFormulario(label: 'CPF'),
-    //                   CampoFormulario(label: 'Data de Nascimento'),
-    //                   CampoFormulario(label: 'Endereço'),
-    //                   CampoFormulario(label: 'Número'),
-    //                   CampoFormulario(label: 'Complemento'),
-    //                   CampoFormulario(label: 'Bairro'),
-    //                   CampoFormulario(label: 'Cidade'),
-    //                   CampoFormulario(label: 'Estado'),
-    //                   CampoFormulario(label: 'CEP'),
-    //                   CampoFormulario(label: 'Senha'),
-    //                   CampoFormulario(label: 'Confirmação de Senha'),
-    //                   BotaoContainer(
-    //                     texto: 'Cadastrar',
-    //                     cor: Cores.marrom,
-    //                     corTexto: Cores.branco,
-    //                     onPressed: () {},
-    //                   ),
-    //                 ],
-    //               ),
-    //             ),
-    //           ],
-    //         ),
-    //       ),
-    //     ],
-    //   ),
-    // );
   }
 
   Widget _paginaEntrar(BuildContext context) {
@@ -170,7 +123,7 @@ class _CadastroParticipantesState extends State<CadastroParticipantes> {
             child: Column(
               children: [
                 const Padding(
-                  padding: EdgeInsets.all(20),
+                  padding: EdgeInsets.symmetric(vertical: 20, horizontal: 10),
                   child: Text(
                     'Cadastro de Participantes',
                     style: TextStyle(
@@ -180,8 +133,14 @@ class _CadastroParticipantesState extends State<CadastroParticipantes> {
                     ),
                   ),
                 ),
-                CampoFormulario(label: 'E-mail'),
-                CampoFormulario(label: 'Senha'),
+                SingleChildScrollView(
+                  child: Column(
+                    children: [
+                      CampoFormulario(label: 'E-mail'),
+                      CampoFormulario(label: 'Senha'),
+                    ],
+                  ),
+                ),
                 Padding(
                   padding: const EdgeInsets.all(20),
                   child: CupertinoButton(

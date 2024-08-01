@@ -16,37 +16,15 @@ class _HomePageState extends State<HomePage> {
   double largura = 0;
   double altura = 0;
 
-  Layout layout = Layout.desktop;
+  // Layout layout = Layout.desktop;
 
-  calcularTamanhoTela() {
-    largura = MediaQuery.of(context).size.width;
-    altura = MediaQuery.of(context).size.height;
-    switch (largura.toInt()) {
-      case < 450:
-        layout = Layout.mobile;
-        break;
-      case < 800:
-        layout = Layout.smartphone;
-        break;
-      case < 1024:
-        layout = Layout.tablet;
-        break;
-      case > 1024:
-        layout = Layout.desktop;
-        break;
-      default:
-        layout = Layout.desktop;
-    }
-    // print('Largura: ${MediaQuery.of(context).size.width}');
-    // print('Altura: ${MediaQuery.of(context).size.height}');
-    definirLayout();
+  calcularTamanhoTela(BuildContext _) {
+    largura = Funcoes.calcularTamanhoTela(_);
   }
-
-  definirLayout() {}
 
   @override
   Widget build(BuildContext context) {
-    calcularTamanhoTela();
+    calcularTamanhoTela(context);
     return Scaffold(
       backgroundColor: Cores.branco,
       body: Column(
@@ -92,13 +70,13 @@ class _HomePageState extends State<HomePage> {
                               BotaoContainer(
                                 icone: CupertinoIcons.add_circled_solid,
                                 titulo: 'Cadastrar Cupom',
-                                layout: layout,
                                 onTap: () {
                                   Navigator.push(
                                     context,
                                     CupertinoDialogRoute(
                                       builder: (context) =>
-                                          const CadastroParticipantes(),
+                                          CadastroParticipantes(
+                                              layout: Globais.layout),
                                       context: context,
                                     ),
                                   );
@@ -107,7 +85,6 @@ class _HomePageState extends State<HomePage> {
                               BotaoContainer(
                                 icone: CupertinoIcons.tickets_fill,
                                 titulo: 'Meus Cupons',
-                                layout: layout,
                                 onTap: () {
                                   print('Clicou');
                                 },
@@ -115,7 +92,6 @@ class _HomePageState extends State<HomePage> {
                               BotaoContainer(
                                 icone: CupertinoIcons.gift_fill,
                                 titulo: 'Sorteios',
-                                layout: layout,
                                 onTap: () {
                                   print('Clicou');
                                 },
@@ -130,13 +106,13 @@ class _HomePageState extends State<HomePage> {
                                 child: BotaoContainer(
                                   icone: CupertinoIcons.add_circled_solid,
                                   titulo: 'Cadastrar Cupom',
-                                  layout: layout,
                                   onTap: () {
                                     Navigator.push(
                                       context,
                                       CupertinoDialogRoute(
                                         builder: (context) =>
-                                            const CadastroParticipantes(),
+                                            CadastroParticipantes(
+                                                layout: Globais.layout),
                                         context: context,
                                       ),
                                     );
@@ -148,7 +124,6 @@ class _HomePageState extends State<HomePage> {
                                 child: BotaoContainer(
                                   icone: CupertinoIcons.tickets_fill,
                                   titulo: 'Meus Cupons',
-                                  layout: layout,
                                   onTap: () {
                                     print('Clicou');
                                   },
@@ -159,7 +134,6 @@ class _HomePageState extends State<HomePage> {
                                 child: BotaoContainer(
                                   icone: CupertinoIcons.gift_fill,
                                   titulo: 'Sorteios',
-                                  layout: layout,
                                   onTap: () {
                                     print('Clicou');
                                   },

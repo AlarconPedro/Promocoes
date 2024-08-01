@@ -9,14 +9,11 @@ class BotaoContainer extends StatefulWidget {
   IconData icone;
   Function onTap;
 
-  Layout layout;
-
   BotaoContainer({
     super.key,
     required this.titulo,
     required this.icone,
     required this.onTap,
-    required this.layout,
   });
 
   @override
@@ -44,18 +41,18 @@ class _BotaoContainerState extends State<BotaoContainer> {
           duration: const Duration(milliseconds: 300),
           curve: Curves.easeInOut,
           padding: EdgeInsets.only(bottom: hover ? 35 : 0),
-          width: widget.layout == Layout.mobile
+          width: Globais.layout == Layout.mobile
               ? 200
-              : widget.layout == Layout.smartphone
+              : Globais.layout == Layout.smartphone
                   ? 220
-                  : widget.layout == Layout.tablet
+                  : Globais.layout == Layout.tablet
                       ? 250
                       : 300,
-          height: widget.layout == Layout.mobile
+          height: Globais.layout == Layout.mobile
               ? 130
-              : widget.layout == Layout.smartphone
+              : Globais.layout == Layout.smartphone
                   ? 150
-                  : widget.layout == Layout.tablet
+                  : Globais.layout == Layout.tablet
                       ? 180
                       : 200,
           decoration: BoxDecoration(
