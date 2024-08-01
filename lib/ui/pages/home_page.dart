@@ -58,52 +58,17 @@ class _HomePageState extends State<HomePage> {
                     ],
                   ),
                 ),
-                Container(
-                  width: MediaQuery.of(context).size.width,
-                  color: Cores.marromMedio,
-                  child: Padding(
-                    padding: const EdgeInsets.all(10),
-                    child: largura > 700
-                        ? Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            children: [
-                              BotaoContainer(
-                                icone: CupertinoIcons.add_circled_solid,
-                                titulo: 'Cadastrar Cupom',
-                                onTap: () {
-                                  Navigator.push(
-                                    context,
-                                    CupertinoDialogRoute(
-                                      builder: (context) =>
-                                          CadastroParticipantes(
-                                              layout: Globais.layout),
-                                      context: context,
-                                    ),
-                                  );
-                                },
-                              ),
-                              BotaoContainer(
-                                icone: CupertinoIcons.tickets_fill,
-                                titulo: 'Meus Cupons',
-                                onTap: () {
-                                  print('Clicou');
-                                },
-                              ),
-                              BotaoContainer(
-                                icone: CupertinoIcons.gift_fill,
-                                titulo: 'Sorteios',
-                                onTap: () {
-                                  print('Clicou');
-                                },
-                              ),
-                            ],
-                          )
-                        : Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Padding(
-                                padding: const EdgeInsets.all(4),
-                                child: BotaoContainer(
+                Center(
+                  child: Container(
+                    width: MediaQuery.of(context).size.width,
+                    color: Cores.marromMedio,
+                    child: Padding(
+                      padding: const EdgeInsets.all(10),
+                      child: largura > 700
+                          ? Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              children: [
+                                BotaoContainer(
                                   icone: CupertinoIcons.add_circled_solid,
                                   titulo: 'Cadastrar Cupom',
                                   onTap: () {
@@ -111,36 +76,71 @@ class _HomePageState extends State<HomePage> {
                                       context,
                                       CupertinoDialogRoute(
                                         builder: (context) =>
-                                            CadastroParticipantes(
-                                                layout: Globais.layout),
+                                            const CadastroParticipantes(),
                                         context: context,
                                       ),
                                     );
                                   },
                                 ),
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.all(4),
-                                child: BotaoContainer(
+                                BotaoContainer(
                                   icone: CupertinoIcons.tickets_fill,
                                   titulo: 'Meus Cupons',
                                   onTap: () {
                                     print('Clicou');
                                   },
                                 ),
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.all(4),
-                                child: BotaoContainer(
+                                BotaoContainer(
                                   icone: CupertinoIcons.gift_fill,
                                   titulo: 'Sorteios',
                                   onTap: () {
                                     print('Clicou');
                                   },
                                 ),
-                              ),
-                            ],
-                          ),
+                              ],
+                            )
+                          : Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Padding(
+                                  padding: const EdgeInsets.all(4),
+                                  child: BotaoContainer(
+                                    icone: CupertinoIcons.add_circled_solid,
+                                    titulo: 'Cadastrar Cupom',
+                                    onTap: () {
+                                      Navigator.push(
+                                        context,
+                                        CupertinoDialogRoute(
+                                          builder: (context) =>
+                                              const CadastroParticipantes(),
+                                          context: context,
+                                        ),
+                                      );
+                                    },
+                                  ),
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.all(4),
+                                  child: BotaoContainer(
+                                    icone: CupertinoIcons.tickets_fill,
+                                    titulo: 'Meus Cupons',
+                                    onTap: () {
+                                      print('Clicou');
+                                    },
+                                  ),
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.all(4),
+                                  child: BotaoContainer(
+                                    icone: CupertinoIcons.gift_fill,
+                                    titulo: 'Sorteios',
+                                    onTap: () {
+                                      print('Clicou');
+                                    },
+                                  ),
+                                ),
+                              ],
+                            ),
+                    ),
                   ),
                 ),
               ],
