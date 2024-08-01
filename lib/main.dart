@@ -1,6 +1,7 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:promocoes/ui/pages/cadastro_participantes_page.dart';
 import 'package:promocoes/ui/pages/home_page.dart';
 
 void main() {
@@ -8,6 +9,9 @@ void main() {
     MaterialApp(
       scrollBehavior: Scroll(),
       debugShowCheckedModeBanner: false,
+      routes: {
+        '/cupom': (context) => const CadastroParticipantes(),
+      },
       home: const HomePage(),
     ),
   );

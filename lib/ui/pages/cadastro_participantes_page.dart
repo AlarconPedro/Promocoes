@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class CadastroParticipantes extends StatefulWidget {
@@ -11,6 +10,8 @@ class CadastroParticipantes extends StatefulWidget {
 class _CadastroParticipantesState extends State<CadastroParticipantes> {
   @override
   Widget build(BuildContext context) {
-    return Card();
+    return const Card(
+      child: Center(child: Text("Cadastro de Participantes")),
+    );
   }
 }
