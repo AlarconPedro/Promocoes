@@ -59,14 +59,20 @@ class _BotaoContainerState extends State<BotaoContainer> {
             color: Cores.marrom,
             borderRadius: BorderRadius.circular(10),
             border: Border.all(
-              color: Cores.branco,
+              // color: Cores.branco,
+              color: Cores.marromEscuro,
               width: 2,
             ),
             boxShadow: hover
                 ? [
+                    // const BoxShadow(
+                    //   color: Cores.marrom,
+                    //   blurRadius: 15,
+                    // ),
                     const BoxShadow(
-                      color: Cores.branco,
+                      color: Cores.marrom,
                       blurRadius: 15,
+                      spreadRadius: 5,
                     ),
                   ]
                 : null,

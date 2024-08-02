@@ -13,7 +13,7 @@ class LogarSistema extends StatefulWidget {
 }
 
 class _LogarSistemaState extends State<LogarSistema> {
-  double altura = 320;
+  double altura = 250;
   double largura = 400;
 
   @override
@@ -52,14 +52,8 @@ class _LogarSistemaState extends State<LogarSistema> {
                     ),
                   ),
                 ),
-                SingleChildScrollView(
-                  child: Column(
-                    children: [
-                      CampoFormulario(label: 'E-mail'),
-                      CampoFormulario(label: 'Senha'),
-                    ],
-                  ),
-                ),
+                CampoFormulario(label: 'CPF'),
+                // CampoFormulario(label: 'Senha'),
                 Padding(
                   padding: const EdgeInsets.all(20),
                   child: CupertinoButton(

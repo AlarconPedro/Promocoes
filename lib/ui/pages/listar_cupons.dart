@@ -107,12 +107,6 @@ class _ListarCuponsState extends State<ListarCupons> {
                       itemBuilder: (context, index) {
                         return ListTile(
                           title: Text('Cupom $index'),
-                          trailing: IconButton(
-                            icon: const Icon(Icons.delete),
-                            onPressed: () {
-                              print('Clicou');
-                            },
-                          ),
                         );
                       }),
                 ),

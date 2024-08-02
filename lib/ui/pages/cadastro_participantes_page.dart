@@ -1,12 +1,7 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:promocoes/ui/pages/cadastro_participantes.dart';
 import 'package:promocoes/ui/pages/listar_cupons.dart';
 import 'package:promocoes/ui/pages/logar_sistema.dart';
-
-import '../../classes/classes.dart';
-import '../widgets/botao_container.dart';
-import '../widgets/campo_formulario.dart';
 
 class CadastroParticipantesPage extends StatefulWidget {
   const CadastroParticipantesPage({super.key});
@@ -61,10 +56,7 @@ class _CadastroParticipantesPageState extends State<CadastroParticipantesPage> {
               curve: Curves.easeInOut,
             );
           }),
-          // _paginaEntrar(context),
-          // _paginaCadastro(context),
           ListarCupons(onClique: () {}),
-          // _paginaEscolha(context),
         ],
       ),
     );
