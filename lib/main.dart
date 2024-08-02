@@ -10,7 +10,7 @@ void main() {
       scrollBehavior: Scroll(),
       debugShowCheckedModeBanner: false,
       routes: {
-        '/cupom': (context) => CadastroParticipantes(),
+        '/cupom': (context) => CadastroParticipantesPage(),
       },
       home: const HomePage(),
     ),

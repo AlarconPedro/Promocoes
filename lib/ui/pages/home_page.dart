@@ -3,6 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:promocoes/classes/classes.dart';
 import 'package:promocoes/classes/layouts.dart';
 import 'package:promocoes/ui/pages/cadastro_participantes_page.dart';
+import 'package:promocoes/ui/pages/listar_cupons.dart';
+import 'package:promocoes/ui/pages/meus_cupons_page.dart';
+import 'package:promocoes/ui/pages/sorteios_page.dart';
 import 'package:promocoes/ui/widgets/botao_container.dart';
 
 class HomePage extends StatefulWidget {
@@ -76,7 +79,7 @@ class _HomePageState extends State<HomePage> {
                                       context,
                                       CupertinoDialogRoute(
                                         builder: (context) =>
-                                            const CadastroParticipantes(),
+                                            const CadastroParticipantesPage(),
                                         context: context,
                                       ),
                                     );
@@ -86,14 +89,31 @@ class _HomePageState extends State<HomePage> {
                                   icone: CupertinoIcons.tickets_fill,
                                   titulo: 'Meus Cupons',
                                   onTap: () {
-                                    print('Clicou');
+                                    Navigator.push(
+                                      context,
+                                      CupertinoDialogRoute(
+                                        builder: (context) =>
+                                            const MeusCupons(),
+                                        context: context,
+                                      ),
+                                    );
                                   },
                                 ),
                                 BotaoContainer(
                                   icone: CupertinoIcons.gift_fill,
                                   titulo: 'Sorteios',
                                   onTap: () {
-                                    print('Clicou');
+                                    Navigator.push(
+                                      context,
+                                      CupertinoDialogRoute(
+                                        builder: (context) => SorteiosPage(
+                                          onClique: () {
+                                            Navigator.pop(context);
+                                          },
+                                        ),
+                                        context: context,
+                                      ),
+                                    );
                                   },
                                 ),
                               ],
@@ -111,7 +131,7 @@ class _HomePageState extends State<HomePage> {
                                         context,
                                         CupertinoDialogRoute(
                                           builder: (context) =>
-                                              const CadastroParticipantes(),
+                                              const CadastroParticipantesPage(),
                                           context: context,
                                         ),
                                       );
@@ -124,7 +144,14 @@ class _HomePageState extends State<HomePage> {
                                     icone: CupertinoIcons.tickets_fill,
                                     titulo: 'Meus Cupons',
                                     onTap: () {
-                                      print('Clicou');
+                                      Navigator.push(
+                                        context,
+                                        CupertinoDialogRoute(
+                                          builder: (context) =>
+                                              const MeusCupons(),
+                                          context: context,
+                                        ),
+                                      );
                                     },
                                   ),
                                 ),
@@ -134,7 +161,17 @@ class _HomePageState extends State<HomePage> {
                                     icone: CupertinoIcons.gift_fill,
                                     titulo: 'Sorteios',
                                     onTap: () {
-                                      print('Clicou');
+                                      Navigator.push(
+                                        context,
+                                        CupertinoDialogRoute(
+                                          builder: (context) => SorteiosPage(
+                                            onClique: () {
+                                              Navigator.pop(context);
+                                            },
+                                          ),
+                                          context: context,
+                                        ),
+                                      );
                                     },
                                   ),
                                 ),
