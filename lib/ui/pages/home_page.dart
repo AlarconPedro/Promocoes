@@ -65,17 +65,64 @@ class _HomePageState extends State<HomePage> {
               ),
             ),
             Center(
-              child: Container(
-                width: MediaQuery.of(context).size.width,
-                // color: Cores.marromMedio,
-                color: Cores.branco,
-                child: Padding(
-                  padding: const EdgeInsets.all(10),
-                  child: largura > 700
-                      ? Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children: [
-                            BotaoContainer(
+              child: Padding(
+                padding: const EdgeInsets.all(10),
+                child: largura > 700
+                    ? Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          BotaoContainer(
+                            icone: CupertinoIcons.add_circled_solid,
+                            titulo: 'Cadastrar Cupom',
+                            onTap: () {
+                              Navigator.push(
+                                context,
+                                CupertinoDialogRoute(
+                                  builder: (context) =>
+                                      const CadastroParticipantesPage(),
+                                  context: context,
+                                ),
+                              );
+                            },
+                          ),
+                          BotaoContainer(
+                            icone: CupertinoIcons.tickets_fill,
+                            titulo: 'Meus Cupons',
+                            onTap: () {
+                              Navigator.push(
+                                context,
+                                CupertinoDialogRoute(
+                                  builder: (context) => const MeusCupons(),
+                                  context: context,
+                                ),
+                              );
+                            },
+                          ),
+                          BotaoContainer(
+                            icone: CupertinoIcons.gift_fill,
+                            titulo: 'Sorteios',
+                            onTap: () {
+                              Navigator.push(
+                                context,
+                                CupertinoDialogRoute(
+                                  builder: (context) => SorteiosPage(
+                                    onClique: () {
+                                      Navigator.pop(context);
+                                    },
+                                  ),
+                                  context: context,
+                                ),
+                              );
+                            },
+                          ),
+                        ],
+                      )
+                    : Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.all(4),
+                            child: BotaoContainer(
                               icone: CupertinoIcons.add_circled_solid,
                               titulo: 'Cadastrar Cupom',
                               onTap: () {
@@ -89,7 +136,10 @@ class _HomePageState extends State<HomePage> {
                                 );
                               },
                             ),
-                            BotaoContainer(
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.all(4),
+                            child: BotaoContainer(
                               icone: CupertinoIcons.tickets_fill,
                               titulo: 'Meus Cupons',
                               onTap: () {
@@ -102,7 +152,10 @@ class _HomePageState extends State<HomePage> {
                                 );
                               },
                             ),
-                            BotaoContainer(
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.all(4),
+                            child: BotaoContainer(
                               icone: CupertinoIcons.gift_fill,
                               titulo: 'Sorteios',
                               onTap: () {
@@ -119,94 +172,15 @@ class _HomePageState extends State<HomePage> {
                                 );
                               },
                             ),
-                          ],
-                        )
-                      : Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Padding(
-                              padding: const EdgeInsets.all(4),
-                              child: BotaoContainer(
-                                icone: CupertinoIcons.add_circled_solid,
-                                titulo: 'Cadastrar Cupom',
-                                onTap: () {
-                                  Navigator.push(
-                                    context,
-                                    CupertinoDialogRoute(
-                                      builder: (context) =>
-                                          const CadastroParticipantesPage(),
-                                      context: context,
-                                    ),
-                                  );
-                                },
-                              ),
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.all(4),
-                              child: BotaoContainer(
-                                icone: CupertinoIcons.tickets_fill,
-                                titulo: 'Meus Cupons',
-                                onTap: () {
-                                  Navigator.push(
-                                    context,
-                                    CupertinoDialogRoute(
-                                      builder: (context) => const MeusCupons(),
-                                      context: context,
-                                    ),
-                                  );
-                                },
-                              ),
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.all(4),
-                              child: BotaoContainer(
-                                icone: CupertinoIcons.gift_fill,
-                                titulo: 'Sorteios',
-                                onTap: () {
-                                  Navigator.push(
-                                    context,
-                                    CupertinoDialogRoute(
-                                      builder: (context) => SorteiosPage(
-                                        onClique: () {
-                                          Navigator.pop(context);
-                                        },
-                                      ),
-                                      context: context,
-                                    ),
-                                  );
-                                },
-                              ),
-                            ),
-                          ],
-                        ),
-                ),
+                          ),
+                        ],
+                      ),
               ),
             ),
+            // ),
           ],
         ),
       ),
-      // const Spacer(),
-      // Row(
-      //   children: [
-      //     Container(
-      //       height: MediaQuery.of(context).size.height * 0.06,
-      //       width: MediaQuery.of(context).size.width,
-      //       color: Cores.marromMedio,
-      //       child: Center(
-      //         child: Text(
-      //           'Rodapé',
-      //           style: TextStyle(
-      //             color: Cores.preto,
-      //             fontWeight: FontWeight.bold,
-      //             fontSize: MediaQuery.of(context).size.height * 0.03,
-      //           ),
-      //         ),
-      //       ),
-      //     ),
-      //   ],
-      // ),
-      //   ],
-      // ),
     );
   }
 }

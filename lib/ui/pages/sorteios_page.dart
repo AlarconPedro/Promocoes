@@ -22,49 +22,46 @@ class _SorteiosPageState extends State<SorteiosPage> {
       body: Padding(
         padding: const EdgeInsets.all(30),
         child: Center(
-          child: Flexible(
-            fit: FlexFit.loose,
-            child: AnimatedContainer(
-              duration: const Duration(milliseconds: 300),
-              curve: Curves.easeInOut,
-              width: largura,
-              height: altura,
-              decoration: BoxDecoration(
-                color: Cores.branco,
-                borderRadius: BorderRadius.circular(20),
-                boxShadow: const [
-                  BoxShadow(
-                    color: Cores.cinza,
-                    blurRadius: 10,
-                    offset: Offset(0, 5),
-                  ),
-                ],
-              ),
-              child: Column(
-                children: [
-                  const Padding(
-                    padding: EdgeInsets.symmetric(vertical: 20, horizontal: 10),
-                    child: Text(
-                      'Sorteios',
-                      style: TextStyle(
-                        color: Cores.preto,
-                        fontSize: 24,
-                        fontWeight: FontWeight.bold,
-                      ),
+          child: AnimatedContainer(
+            duration: const Duration(milliseconds: 300),
+            curve: Curves.easeInOut,
+            width: largura,
+            height: altura,
+            decoration: BoxDecoration(
+              color: Cores.branco,
+              borderRadius: BorderRadius.circular(20),
+              boxShadow: const [
+                BoxShadow(
+                  color: Cores.cinza,
+                  blurRadius: 10,
+                  offset: Offset(0, 5),
+                ),
+              ],
+            ),
+            child: Column(
+              children: [
+                const Padding(
+                  padding: EdgeInsets.symmetric(vertical: 20, horizontal: 10),
+                  child: Text(
+                    'Sorteios',
+                    style: TextStyle(
+                      color: Cores.preto,
+                      fontSize: 24,
+                      fontWeight: FontWeight.bold,
                     ),
                   ),
-                  Expanded(
-                    child: ListView.builder(
-                        itemCount: 10,
-                        itemBuilder: (context, index) {
-                          return const ListTile(
-                            title: Text(
-                                'Sorteio: item | Ocorrido: 00/00/2024 | Ganhador: Fulano de Tal'),
-                          );
-                        }),
-                  ),
-                ],
-              ),
+                ),
+                Expanded(
+                  child: ListView.builder(
+                      itemCount: 10,
+                      itemBuilder: (context, index) {
+                        return const ListTile(
+                          title: Text(
+                              'Sorteio: item | Ocorrido: 00/00/2024 | Ganhador: Fulano de Tal'),
+                        );
+                      }),
+                ),
+              ],
             ),
           ),
         ),

@@ -21,59 +21,56 @@ class _LogarSistemaState extends State<LogarSistema> {
     return Padding(
       padding: const EdgeInsets.all(30),
       child: Center(
-        child: Flexible(
-          fit: FlexFit.loose,
-          child: AnimatedContainer(
-            duration: const Duration(milliseconds: 300),
-            curve: Curves.easeInOut,
-            width: largura,
-            height: altura,
-            decoration: BoxDecoration(
-              color: Cores.branco,
-              borderRadius: BorderRadius.circular(20),
-              boxShadow: const [
-                BoxShadow(
-                  color: Cores.cinza,
-                  blurRadius: 10,
-                  offset: Offset(0, 5),
+        child: AnimatedContainer(
+          duration: const Duration(milliseconds: 300),
+          curve: Curves.easeInOut,
+          width: largura,
+          height: altura,
+          decoration: BoxDecoration(
+            color: Cores.branco,
+            borderRadius: BorderRadius.circular(20),
+            boxShadow: const [
+              BoxShadow(
+                color: Cores.cinza,
+                blurRadius: 10,
+                offset: Offset(0, 5),
+              ),
+            ],
+          ),
+          child: Column(
+            children: [
+              const Padding(
+                padding: EdgeInsets.symmetric(vertical: 20, horizontal: 10),
+                child: Text(
+                  'Cadastro de Participantes',
+                  style: TextStyle(
+                    color: Cores.preto,
+                    fontSize: 24,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
-              ],
-            ),
-            child: Column(
-              children: [
-                const Padding(
-                  padding: EdgeInsets.symmetric(vertical: 20, horizontal: 10),
-                  child: Text(
-                    'Cadastro de Participantes',
+              ),
+              CampoFormulario(label: 'CPF'),
+              // CampoFormulario(label: 'Senha'),
+              Padding(
+                padding: const EdgeInsets.all(20),
+                child: CupertinoButton(
+                  onPressed: () {
+                    widget.onClick();
+                  },
+                  padding:
+                      const EdgeInsets.symmetric(vertical: 5, horizontal: 30),
+                  color: Cores.verde,
+                  child: const Text(
+                    'Entrar',
                     style: TextStyle(
-                      color: Cores.preto,
-                      fontSize: 24,
-                      fontWeight: FontWeight.bold,
+                      color: Cores.branco,
+                      fontSize: 18,
                     ),
                   ),
                 ),
-                CampoFormulario(label: 'CPF'),
-                // CampoFormulario(label: 'Senha'),
-                Padding(
-                  padding: const EdgeInsets.all(20),
-                  child: CupertinoButton(
-                    onPressed: () {
-                      widget.onClick();
-                    },
-                    padding:
-                        const EdgeInsets.symmetric(vertical: 5, horizontal: 30),
-                    color: Cores.verde,
-                    child: const Text(
-                      'Entrar',
-                      style: TextStyle(
-                        color: Cores.branco,
-                        fontSize: 18,
-                      ),
-                    ),
-                  ),
-                ),
-              ],
-            ),
+              ),
+            ],
           ),
         ),
       ),
