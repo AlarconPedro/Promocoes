@@ -40,9 +40,9 @@ class _LogarSistemaState extends State<LogarSistema> {
           child: Column(
             children: [
               const Padding(
-                padding: EdgeInsets.symmetric(vertical: 20, horizontal: 10),
+                padding: EdgeInsets.symmetric(vertical: 15, horizontal: 10),
                 child: Text(
-                  'Cadastro de Participantes',
+                  'Digite seu CPF',
                   style: TextStyle(
                     color: Cores.preto,
                     fontSize: 24,
@@ -53,7 +53,7 @@ class _LogarSistemaState extends State<LogarSistema> {
               CampoFormulario(label: 'CPF'),
               // CampoFormulario(label: 'Senha'),
               Padding(
-                padding: const EdgeInsets.all(20),
+                padding: const EdgeInsets.all(15),
                 child: CupertinoButton(
                   onPressed: () {
                     widget.onClick();
