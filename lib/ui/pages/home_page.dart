@@ -64,7 +64,6 @@ class _HomePageState extends State<HomePage> {
                 ],
               ),
             ),
-<<<<<<< Updated upstream
             Center(
               child: Padding(
                 padding: const EdgeInsets.all(10),
@@ -176,83 +175,6 @@ class _HomePageState extends State<HomePage> {
                           ),
                         ],
                       ),
-=======
-            Expanded(
-              child: Center(
-                child: SingleChildScrollView(
-                  child: Padding(
-                    padding: const EdgeInsets.all(10),
-                    child: largura > 700
-                        ? Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            children: [
-                              BotaoContainer(
-                                icone: CupertinoIcons.person_add_solid,
-                                titulo: 'Cadastrar-se',
-                                layout: layout,
-                                onTap: () {
-                                  print('Clicou');
-                                },
-                              ),
-                              BotaoContainer(
-                                icone: CupertinoIcons.tickets_fill,
-                                titulo: 'Novo Cupom',
-                                layout: layout,
-                                onTap: () {
-                                  print('Clicou');
-                                },
-                              ),
-                              BotaoContainer(
-                                icone: CupertinoIcons.gift_fill,
-                                titulo: 'Sorteios',
-                                layout: layout,
-                                onTap: () {
-                                  print('Clicou');
-                                },
-                              ),
-                            ],
-                          )
-                        : Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Padding(
-                                padding: const EdgeInsets.all(4),
-                                child: BotaoContainer(
-                                  icone: CupertinoIcons.person_add_solid,
-                                  titulo: 'Cadastrar-se',
-                                  layout: layout,
-                                  onTap: () {
-                                    print('Clicou');
-                                  },
-                                ),
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.all(4),
-                                child: BotaoContainer(
-                                  icone: CupertinoIcons.tickets_fill,
-                                  titulo: 'Novo Cupom',
-                                  layout: layout,
-                                  onTap: () {
-                                    print('Clicou');
-                                  },
-                                ),
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.all(4),
-                                child: BotaoContainer(
-                                  icone: CupertinoIcons.gift_fill,
-                                  titulo: 'Sorteios',
-                                  layout: layout,
-                                  onTap: () {
-                                    print('Clicou');
-                                  },
-                                ),
-                              ),
-                            ],
-                          ),
-                  ),
-                ),
->>>>>>> Stashed changes
               ),
             ),
             // ),
