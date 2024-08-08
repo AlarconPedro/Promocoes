@@ -17,40 +17,41 @@ class _CadastroParticipantesState extends State<CadastroParticipantes> {
     return Padding(
       padding: const EdgeInsets.all(30),
       child: Center(
-        child: Container(
-          width: 800,
-          // width: largura,
-          height: 650,
-          // height: altura,
-          decoration: BoxDecoration(
-            color: Cores.branco,
-            borderRadius: BorderRadius.circular(20),
-            boxShadow: const [
-              BoxShadow(
-                color: Cores.cinza,
-                blurRadius: 10,
-                offset: Offset(0, 5),
-              ),
-            ],
-          ),
-          child: Column(
-            children: [
-              const Padding(
-                padding: EdgeInsets.symmetric(
-                  horizontal: 10,
-                  vertical: 20,
+        child: SingleChildScrollView(
+          physics: const AlwaysScrollableScrollPhysics(),
+          child: Container(
+            width: 800,
+            // width: largura,
+            height: 650,
+            // height: altura,
+            decoration: BoxDecoration(
+              color: Cores.branco,
+              borderRadius: BorderRadius.circular(20),
+              boxShadow: const [
+                BoxShadow(
+                  color: Cores.cinza,
+                  blurRadius: 10,
+                  offset: Offset(0, 5),
                 ),
-                child: Text(
-                  'Cadastro de Participantes',
-                  style: TextStyle(
-                    color: Cores.preto,
-                    fontSize: 22,
-                    fontWeight: FontWeight.bold,
+              ],
+            ),
+            child: Column(
+              children: [
+                const Padding(
+                  padding: EdgeInsets.symmetric(
+                    horizontal: 10,
+                    vertical: 20,
+                  ),
+                  child: Text(
+                    'Cadastro de Participantes',
+                    style: TextStyle(
+                      color: Cores.preto,
+                      fontSize: 22,
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
                 ),
-              ),
-              SingleChildScrollView(
-                child: SizedBox(
+                SizedBox(
                   child: Column(
                     children: [
                       CampoFormulario(label: 'CPF'),
@@ -62,26 +63,26 @@ class _CadastroParticipantesState extends State<CadastroParticipantes> {
                     ],
                   ),
                 ),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(20),
-                child: CupertinoButton(
-                  onPressed: () {
-                    widget.onClique();
-                  },
-                  padding:
-                      const EdgeInsets.symmetric(vertical: 5, horizontal: 30),
-                  color: Cores.verde,
-                  child: const Text(
-                    'Cadastrar',
-                    style: TextStyle(
-                      color: Cores.branco,
-                      fontSize: 18,
+                Padding(
+                  padding: const EdgeInsets.all(20),
+                  child: CupertinoButton(
+                    onPressed: () {
+                      widget.onClique();
+                    },
+                    padding:
+                        const EdgeInsets.symmetric(vertical: 5, horizontal: 30),
+                    color: Cores.verde,
+                    child: const Text(
+                      'Cadastrar',
+                      style: TextStyle(
+                        color: Cores.branco,
+                        fontSize: 18,
+                      ),
                     ),
                   ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ),

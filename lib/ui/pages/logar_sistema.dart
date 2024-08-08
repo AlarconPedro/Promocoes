@@ -21,56 +21,59 @@ class _LogarSistemaState extends State<LogarSistema> {
     return Padding(
       padding: const EdgeInsets.all(30),
       child: Center(
-        child: AnimatedContainer(
-          duration: const Duration(milliseconds: 300),
-          curve: Curves.easeInOut,
-          width: largura,
-          height: altura,
-          decoration: BoxDecoration(
-            color: Cores.branco,
-            borderRadius: BorderRadius.circular(20),
-            boxShadow: const [
-              BoxShadow(
-                color: Cores.cinza,
-                blurRadius: 10,
-                offset: Offset(0, 5),
-              ),
-            ],
-          ),
-          child: Column(
-            children: [
-              const Padding(
-                padding: EdgeInsets.symmetric(vertical: 15, horizontal: 10),
-                child: Text(
-                  'Digite seu CPF',
-                  style: TextStyle(
-                    color: Cores.preto,
-                    fontSize: 24,
-                    fontWeight: FontWeight.bold,
-                  ),
+        child: SingleChildScrollView(
+          physics: const AlwaysScrollableScrollPhysics(),
+          child: AnimatedContainer(
+            duration: const Duration(milliseconds: 300),
+            curve: Curves.easeInOut,
+            width: largura,
+            height: altura,
+            decoration: BoxDecoration(
+              color: Cores.branco,
+              borderRadius: BorderRadius.circular(20),
+              boxShadow: const [
+                BoxShadow(
+                  color: Cores.cinza,
+                  blurRadius: 10,
+                  offset: Offset(0, 5),
                 ),
-              ),
-              CampoFormulario(label: 'CPF'),
-              // CampoFormulario(label: 'Senha'),
-              Padding(
-                padding: const EdgeInsets.all(15),
-                child: CupertinoButton(
-                  onPressed: () {
-                    widget.onClick();
-                  },
-                  padding:
-                      const EdgeInsets.symmetric(vertical: 5, horizontal: 30),
-                  color: Cores.verde,
-                  child: const Text(
-                    'Entrar',
+              ],
+            ),
+            child: Column(
+              children: [
+                const Padding(
+                  padding: EdgeInsets.symmetric(vertical: 15, horizontal: 10),
+                  child: Text(
+                    'Digite seu CPF',
                     style: TextStyle(
-                      color: Cores.branco,
-                      fontSize: 18,
+                      color: Cores.preto,
+                      fontSize: 24,
+                      fontWeight: FontWeight.bold,
                     ),
                   ),
                 ),
-              ),
-            ],
+                CampoFormulario(label: 'CPF'),
+                // CampoFormulario(label: 'Senha'),
+                Padding(
+                  padding: const EdgeInsets.all(15),
+                  child: CupertinoButton(
+                    onPressed: () {
+                      widget.onClick();
+                    },
+                    padding:
+                        const EdgeInsets.symmetric(vertical: 5, horizontal: 30),
+                    color: Cores.verde,
+                    child: const Text(
+                      'Entrar',
+                      style: TextStyle(
+                        color: Cores.branco,
+                        fontSize: 18,
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
       ),
