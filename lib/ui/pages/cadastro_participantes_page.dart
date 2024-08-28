@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:promocoes/api/api_promocao.dart';
 import 'package:promocoes/ui/pages/cadastro_participantes.dart';
 import 'package:promocoes/ui/pages/listar_cupons.dart';
 import 'package:promocoes/ui/pages/logar_sistema.dart';
+
+import '../../models/participante_model.dart';
 
 class CadastroParticipantesPage extends StatefulWidget {
   const CadastroParticipantesPage({super.key});
@@ -16,6 +19,35 @@ class _CadastroParticipantesPageState extends State<CadastroParticipantesPage> {
   double altura = 320;
 
   final PageController _pageController = PageController();
+
+  bool carregando = false;
+
+  ParticipanteModel participante = ParticipanteModel(
+    parCidade: '',
+    parCpf: '',
+    parEmail: '',
+    parEndereco: '',
+    parCodigo: 0,
+    parDataNasc: '',
+    parFone: '',
+    parNome: '',
+    parUf: '',
+    proCodigo: 0,
+  );
+
+  buscarDadosUsuario(String text) async {
+    setState(() => carregando = true);
+    var response = await ApiPromocao().getDadosParticipante(text);
+    if (response.statusCode == 200) {
+      participante = ParticipanteModel.fromJson(response.data);
+      _pageController.animateToPage(
+        1,
+        duration: const Duration(milliseconds: 300),
+        curve: Curves.easeInOut,
+      );
+    }
+    setState(() => carregando = false);
+  }
 
   @override
   void initState() {
@@ -42,20 +74,17 @@ class _CadastroParticipantesPageState extends State<CadastroParticipantesPage> {
         controller: _pageController,
         physics: const NeverScrollableScrollPhysics(),
         children: [
-          LogarSistema(onClick: () {
-            _pageController.animateToPage(
-              1,
-              duration: const Duration(milliseconds: 300),
-              curve: Curves.easeInOut,
-            );
-          }),
-          CadastroParticipantes(onClique: () {
-            _pageController.animateToPage(
-              2,
-              duration: const Duration(milliseconds: 300),
-              curve: Curves.easeInOut,
-            );
-          }),
+          LogarSistema(onClick: (cpf) => buscarDadosUsuario(cpf)),
+          CadastroParticipantes(
+            onClique: () {
+              _pageController.animateToPage(
+                2,
+                duration: const Duration(milliseconds: 300),
+                curve: Curves.easeInOut,
+              );
+            },
+            participante: participante.parCodigo == 0 ? null : participante,
+          ),
           ListarCupons(onClique: () {}),
         ],
       ),

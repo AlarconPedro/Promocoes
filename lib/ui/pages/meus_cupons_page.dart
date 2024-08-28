@@ -3,7 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:promocoes/ui/pages/listar_cupons.dart';
 import 'package:promocoes/ui/pages/logar_sistema.dart';
 
+import '../../api/api_promocao.dart';
 import '../../classes/classes.dart';
+import '../../models/participante_model.dart';
 
 class MeusCupons extends StatefulWidget {
   const MeusCupons({super.key});
@@ -18,6 +20,35 @@ class _MeusCuponsState extends State<MeusCupons> {
 
   PageController pageController = PageController();
 
+  bool carregando = false;
+
+  ParticipanteModel participante = ParticipanteModel(
+    parCidade: '',
+    parCpf: '',
+    parEmail: '',
+    parEndereco: '',
+    parCodigo: 0,
+    parDataNasc: '',
+    parFone: '',
+    parNome: '',
+    parUf: '',
+    proCodigo: 0,
+  );
+
+  buscarDadosUsuario(String text) async {
+    setState(() => carregando = true);
+    var response = await ApiPromocao().getDadosParticipante(text);
+    if (response.statusCode == 200) {
+      participante = ParticipanteModel.fromJson(response.data);
+      pageController.animateToPage(
+        1,
+        duration: const Duration(milliseconds: 300),
+        curve: Curves.easeInOut,
+      );
+    }
+    setState(() => carregando = false);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -26,15 +57,7 @@ class _MeusCuponsState extends State<MeusCupons> {
         controller: pageController,
         physics: const NeverScrollableScrollPhysics(),
         children: [
-          LogarSistema(
-            onClick: () {
-              pageController.animateToPage(
-                1,
-                duration: const Duration(milliseconds: 300),
-                curve: Curves.easeInOut,
-              );
-            },
-          ),
+          LogarSistema(onClick: (cpf) => buscarDadosUsuario(cpf)),
           ListarCupons(
             onClique: () {
               Navigator.pop(context);
