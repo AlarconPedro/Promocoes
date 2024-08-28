@@ -141,6 +141,124 @@ class _CadastroParticipantesState extends State<CadastroParticipantes> {
                             ],
                           ),
                         ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 10),
+                        child: Expanded(
+                          child: Row(
+                            children: [
+                              Expanded(
+                                child: Row(
+                                  children: [
+                                    const Text(
+                                      'Telefone: ',
+                                      style: TextStyle(
+                                        color: Cores.preto,
+                                        fontSize: 18,
+                                      ),
+                                    ),
+                                    Text(
+                                      cpfFormatter.maskText(
+                                        widget.participante!.parFone,
+                                      ),
+                                      style: const TextStyle(
+                                        color: Cores.preto,
+                                        fontSize: 18,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              Expanded(
+                                  child: Row(
+                                children: [
+                                  const Text(
+                                    'Endereço: ',
+                                    style: TextStyle(
+                                      color: Cores.preto,
+                                      fontSize: 18,
+                                    ),
+                                  ),
+                                  Text(
+                                    widget.participante!.parEndereco,
+                                    style: const TextStyle(
+                                      color: Cores.preto,
+                                      fontSize: 18,
+                                    ),
+                                  ),
+                                ],
+                              )),
+                            ],
+                          ),
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 10),
+                        child: Expanded(
+                          child: Row(
+                            children: [
+                              Expanded(
+                                child: Row(
+                                  children: [
+                                    const Text(
+                                      'Data Nascimento: ',
+                                      style: TextStyle(
+                                        color: Cores.preto,
+                                        fontSize: 18,
+                                      ),
+                                    ),
+                                    Text(
+                                      cpfFormatter.maskText(
+                                          widget.participante!.parDataNasc),
+                                      style: const TextStyle(
+                                        color: Cores.preto,
+                                        fontSize: 18,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              Expanded(
+                                  child: Row(
+                                children: [
+                                  const Text(
+                                    'Cidade: ',
+                                    style: TextStyle(
+                                      color: Cores.preto,
+                                      fontSize: 18,
+                                    ),
+                                  ),
+                                  Text(
+                                    widget.participante!.parCidade,
+                                    style: const TextStyle(
+                                      color: Cores.preto,
+                                      fontSize: 18,
+                                    ),
+                                  ),
+                                ],
+                              )),
+                              Expanded(
+                                  child: Row(
+                                children: [
+                                  const Text(
+                                    'UF: ',
+                                    style: TextStyle(
+                                      color: Cores.preto,
+                                      fontSize: 18,
+                                    ),
+                                  ),
+                                  Text(
+                                    widget.participante!.parUf,
+                                    style: const TextStyle(
+                                      color: Cores.preto,
+                                      fontSize: 18,
+                                    ),
+                                  ),
+                                ],
+                              )),
+                            ],
+                          ),
+                        ),
                       )
                     ],
                   )

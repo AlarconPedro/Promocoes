@@ -3,13 +3,15 @@ import 'package:flutter/material.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 import 'package:promocoes/api/api_promocao.dart';
 import 'package:promocoes/models/participante_model.dart';
+import 'package:promocoes/ui/widgets/loading.dart';
 
 import '../../classes/classes.dart';
 import '../widgets/campo_formulario.dart';
 
 class LogarSistema extends StatefulWidget {
   Function(String) onClick;
-  LogarSistema({super.key, required this.onClick});
+  bool carregando;
+  LogarSistema({super.key, required this.onClick, required this.carregando});
 
   @override
   State<LogarSistema> createState() => _LogarSistemaState();
@@ -62,11 +64,13 @@ class _LogarSistemaState extends State<LogarSistema> {
                     ),
                   ),
                 ),
-                CampoFormulario(
-                  label: 'CPF',
-                  controller: cpfController,
-                  mask: cpfFormatter,
-                ),
+                widget.carregando
+                    ? SizedBox(height: 60, child: loading())
+                    : CampoFormulario(
+                        label: 'CPF',
+                        controller: cpfController,
+                        mask: cpfFormatter,
+                      ),
                 Padding(
                   padding: const EdgeInsets.all(15),
                   child: CupertinoButton(

@@ -39,13 +39,30 @@ class _CadastroParticipantesPageState extends State<CadastroParticipantesPage> {
     setState(() => carregando = true);
     var response = await ApiPromocao().getDadosParticipante(text);
     if (response.statusCode == 200) {
-      participante = ParticipanteModel.fromJson(response.data);
-      _pageController.animateToPage(
-        1,
-        duration: const Duration(milliseconds: 300),
-        curve: Curves.easeInOut,
-      );
+      setState(() {
+        participante = ParticipanteModel.fromJson(response.data);
+      });
+    } else {
+      setState(() {
+        participante = ParticipanteModel(
+          parCidade: '',
+          parCpf: '',
+          parEmail: '',
+          parEndereco: '',
+          parCodigo: 0,
+          parDataNasc: '',
+          parFone: '',
+          parNome: '',
+          parUf: '',
+          proCodigo: 0,
+        );
+      });
     }
+    _pageController.animateToPage(
+      1,
+      duration: const Duration(milliseconds: 300),
+      curve: Curves.easeInOut,
+    );
     setState(() => carregando = false);
   }
 
@@ -74,7 +91,12 @@ class _CadastroParticipantesPageState extends State<CadastroParticipantesPage> {
         controller: _pageController,
         physics: const NeverScrollableScrollPhysics(),
         children: [
-          LogarSistema(onClick: (cpf) => buscarDadosUsuario(cpf)),
+          LogarSistema(
+            onClick: (cpf) {
+              return buscarDadosUsuario(cpf);
+            },
+            carregando: carregando,
+          ),
           CadastroParticipantes(
             onClique: () {
               _pageController.animateToPage(

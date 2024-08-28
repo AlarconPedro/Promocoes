@@ -2,18 +2,20 @@ import 'package:promocoes/api/http.dart';
 import 'package:promocoes/classes/classes.dart';
 
 class ApiPromocao {
-  final http = Http();
+  final request = Http();
 
   final String _urlDadosParticipantes =
-      '${Globais.urlBase}/promocao/participante/dados/';
+      '${Globais.urlBase}/Promocao/participante/dados/';
   final String _urlGetParticipantes =
       '${Globais.urlBase}/promocao/participantes';
 
   Future<dynamic> getParticipantes() async {
-    return await http.get(_urlGetParticipantes);
+    return await request.getJson(_urlGetParticipantes);
   }
 
   Future<dynamic> getDadosParticipante(String cpf) async {
-    return await http.get('$_urlDadosParticipantes$cpf');
+    var refatorado = cpf.replaceAll('.', '').replaceAll('-', '');
+    var response = await request.getJson('$_urlDadosParticipantes$refatorado');
+    return response;
   }
 }

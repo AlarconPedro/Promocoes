@@ -57,7 +57,9 @@ class _MeusCuponsState extends State<MeusCupons> {
         controller: pageController,
         physics: const NeverScrollableScrollPhysics(),
         children: [
-          LogarSistema(onClick: (cpf) => buscarDadosUsuario(cpf)),
+          LogarSistema(
+              onClick: (cpf) => buscarDadosUsuario(cpf),
+              carregando: carregando),
           ListarCupons(
             onClique: () {
               Navigator.pop(context);
