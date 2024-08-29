@@ -16,11 +16,13 @@ class CadastroParticipantes extends StatefulWidget {
   Function onClique;
   Function listarCupons;
   ParticipanteModel? participante;
+  String cpf;
   CadastroParticipantes({
     super.key,
     required this.onClique,
     required this.participante,
     required this.listarCupons,
+    required this.cpf,
   });
 
   @override
@@ -126,6 +128,8 @@ class _CadastroParticipantesState extends State<CadastroParticipantes> {
     if (widget.participante != null) {
       participanteCadastrado = true;
       alimentarCampos(widget.participante!);
+    } else {
+      cpfController.text = widget.cpf;
     }
   }
 
@@ -405,37 +409,45 @@ class _CadastroParticipantesState extends State<CadastroParticipantes> {
                                   Row(
                                     children: [
                                       Expanded(
-                                        child: CampoFormulario(
-                                          label: 'CPF',
-                                          controller: cpfController,
-                                          mask: cpfFormatter,
-                                          onChanged: (value) {
-                                            if (value.length == 14) {
-                                              setState(() {
-                                                carregando = true;
-                                              });
-                                              ApiPromocao()
-                                                  .getDadosParticipante(value)
-                                                  .then((participante) {
-                                                if (participante != null) {
+                                        child: Opacity(
+                                          opacity: 0.5,
+                                          child: AbsorbPointer(
+                                            absorbing: true,
+                                            child: CampoFormulario(
+                                              label: 'CPF',
+                                              controller: cpfController,
+                                              mask: cpfFormatter,
+                                              onChanged: (value) {
+                                                if (value.length == 14) {
                                                   setState(() {
-                                                    participanteCadastrado =
-                                                        true;
-                                                    alimentarCampos(
-                                                      ParticipanteModel
-                                                          .fromJson(
-                                                        json.decode(
-                                                            participante.body),
-                                                      ),
-                                                    );
+                                                    carregando = true;
+                                                  });
+                                                  ApiPromocao()
+                                                      .getDadosParticipante(
+                                                          value)
+                                                      .then((participante) {
+                                                    if (participante != null) {
+                                                      setState(() {
+                                                        participanteCadastrado =
+                                                            true;
+                                                        alimentarCampos(
+                                                          ParticipanteModel
+                                                              .fromJson(
+                                                            json.decode(
+                                                                participante
+                                                                    .body),
+                                                          ),
+                                                        );
+                                                      });
+                                                    }
+                                                  });
+                                                  setState(() {
+                                                    carregando = false;
                                                   });
                                                 }
-                                              });
-                                              setState(() {
-                                                carregando = false;
-                                              });
-                                            }
-                                          },
+                                              },
+                                            ),
+                                          ),
                                         ),
                                       ),
                                       Expanded(
@@ -538,8 +550,8 @@ class _CadastroParticipantesState extends State<CadastroParticipantes> {
                     child: Column(
                       children: [
                         const Padding(
-                          padding: EdgeInsets.symmetric(
-                              vertical: 20, horizontal: 10),
+                          padding:
+                              EdgeInsets.symmetric(vertical: 5, horizontal: 10),
                           child: Text(
                             'Cadastro de Cupons',
                             style: TextStyle(
@@ -598,7 +610,7 @@ class _CadastroParticipantesState extends State<CadastroParticipantes> {
                             Padding(
                               padding: const EdgeInsets.symmetric(
                                 horizontal: 10,
-                                vertical: 15,
+                                vertical: 10,
                               ),
                               child: TextButton(
                                 onPressed: () {

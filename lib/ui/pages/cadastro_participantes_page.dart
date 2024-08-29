@@ -61,6 +61,11 @@ class _CadastroParticipantesPageState extends State<CadastroParticipantesPage> {
           );
         });
       }
+      _pageController.animateToPage(
+        1,
+        duration: const Duration(milliseconds: 300),
+        curve: Curves.easeInOut,
+      );
     } catch (e) {
       setState(() => carregando = false);
       print(e);
@@ -70,11 +75,6 @@ class _CadastroParticipantesPageState extends State<CadastroParticipantesPage> {
       //   curve: Curves.easeInOut,
       // );
     }
-    _pageController.animateToPage(
-      1,
-      duration: const Duration(milliseconds: 300),
-      curve: Curves.easeInOut,
-    );
     setState(() => carregando = false);
   }
 
@@ -125,6 +125,7 @@ class _CadastroParticipantesPageState extends State<CadastroParticipantesPage> {
               );
             },
             participante: participante.parCodigo == 0 ? null : participante,
+            cpf: participante.parCpf,
           ),
           ListarCupons(
             onClique: () {},
