@@ -75,6 +75,16 @@ class _LogarSistemaState extends State<LogarSistema> {
                   padding: const EdgeInsets.all(15),
                   child: CupertinoButton(
                     onPressed: () {
+                      if (cpfController.text.isEmpty ||
+                          cpfController.text.length < 14) {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          const SnackBar(
+                            content: Text('Digite seu CPF'),
+                            backgroundColor: Cores.vermelho,
+                          ),
+                        );
+                        return;
+                      }
                       widget.onClick(cpfController.text);
                     },
                     padding:

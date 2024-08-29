@@ -1,7 +1,11 @@
 import 'package:flutter/cupertino.dart';
 
-Widget loading() {
-  return const Center(
-    child: CupertinoActivityIndicator(),
+import '../../classes/classes.dart';
+
+Widget loading({Color? cor}) {
+  return Center(
+    child: CupertinoActivityIndicator(
+      color: cor ?? Cores.preto,
+    ),
   );
 }

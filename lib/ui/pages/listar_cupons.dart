@@ -1,11 +1,20 @@
+import 'dart:convert';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:promocoes/models/cupom_model.dart';
 
+import '../../api/api_promocao.dart';
 import '../../classes/classes.dart';
 
 class ListarCupons extends StatefulWidget {
   Function onClique;
-  ListarCupons({super.key, required this.onClique});
+  int? codigoParticipante;
+  ListarCupons({
+    super.key,
+    required this.onClique,
+    this.codigoParticipante,
+  });
 
   @override
   State<ListarCupons> createState() => _ListarCuponsState();
@@ -14,6 +23,37 @@ class ListarCupons extends StatefulWidget {
 class _ListarCuponsState extends State<ListarCupons> {
   double altura = 650;
   double largura = 650;
+
+  bool carregando = false;
+
+  List<CupomModel> cupons = [];
+
+  buscarCupons(int codigoParticipante) async {
+    setState(() => carregando = true);
+    var response =
+        await ApiPromocao().getParticipanteCupons(codigoParticipante);
+    if (response.statusCode == 200) {
+      var cupons = json.decode(response.body);
+      for (var item in cupons) {
+        cupons.add(CupomModel.fromJson(item));
+      }
+    }
+    setState(() => carregando = false);
+    // var response = await ApiPromocao().getParticipanteCupons(codigoParticipante);
+    // if (response.statusCode == 200) {
+    //   var lista = json.decode(response.body);
+    //   print(lista);
+    // }
+  }
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    if (widget.codigoParticipante != null) {
+      buscarCupons(widget.codigoParticipante!);
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -101,10 +141,10 @@ class _ListarCuponsState extends State<ListarCupons> {
               // CampoFormulario(label: 'Cupom'),
               Expanded(
                 child: ListView.builder(
-                    itemCount: 10,
+                    itemCount: cupons.length,
                     itemBuilder: (context, index) {
                       return ListTile(
-                        title: Text('Cupom $index'),
+                        title: Text(cupons[index].cupNumero),
                       );
                     }),
               ),

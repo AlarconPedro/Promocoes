@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:promocoes/api/api_promocao.dart';
 import 'package:promocoes/ui/pages/cadastro_participantes.dart';
@@ -37,26 +39,36 @@ class _CadastroParticipantesPageState extends State<CadastroParticipantesPage> {
 
   buscarDadosUsuario(String text) async {
     setState(() => carregando = true);
-    var response = await ApiPromocao().getDadosParticipante(text);
-    if (response.statusCode == 200) {
-      setState(() {
-        participante = ParticipanteModel.fromJson(response.data);
-      });
-    } else {
-      setState(() {
-        participante = ParticipanteModel(
-          parCidade: '',
-          parCpf: '',
-          parEmail: '',
-          parEndereco: '',
-          parCodigo: 0,
-          parDataNasc: '',
-          parFone: '',
-          parNome: '',
-          parUf: '',
-          proCodigo: 0,
-        );
-      });
+    try {
+      var response = await ApiPromocao().getDadosParticipante(text);
+      if (response.statusCode == 200) {
+        setState(() {
+          participante = ParticipanteModel.fromJson(json.decode(response.body));
+        });
+      } else {
+        setState(() {
+          participante = ParticipanteModel(
+            parCidade: '',
+            parCpf: text,
+            parEmail: '',
+            parEndereco: '',
+            parCodigo: 0,
+            parDataNasc: '',
+            parFone: '',
+            parNome: '',
+            parUf: '',
+            proCodigo: 0,
+          );
+        });
+      }
+    } catch (e) {
+      setState(() => carregando = false);
+      print(e);
+      // _pageController.animateToPage(
+      //   1,
+      //   duration: const Duration(milliseconds: 300),
+      //   curve: Curves.easeInOut,
+      // );
     }
     _pageController.animateToPage(
       1,
@@ -105,9 +117,19 @@ class _CadastroParticipantesPageState extends State<CadastroParticipantesPage> {
                 curve: Curves.easeInOut,
               );
             },
+            listarCupons: () {
+              _pageController.animateToPage(
+                2,
+                duration: const Duration(milliseconds: 300),
+                curve: Curves.easeInOut,
+              );
+            },
             participante: participante.parCodigo == 0 ? null : participante,
           ),
-          ListarCupons(onClique: () {}),
+          ListarCupons(
+            onClique: () {},
+            codigoParticipante: participante.parCodigo,
+          ),
         ],
       ),
     );

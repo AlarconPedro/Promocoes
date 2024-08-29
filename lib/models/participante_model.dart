@@ -25,16 +25,16 @@ class ParticipanteModel {
 
   factory ParticipanteModel.fromJson(Map<String, dynamic> json) {
     return ParticipanteModel(
-      parCodigo: json['parCodigo'],
-      parNome: json['parNome'],
-      parCpf: json['parCpf'],
-      parFone: json['parFone'],
-      parEndereco: json['parEndereco'],
-      parCidade: json['parCidade'],
-      parUf: json['parUf'],
-      parDataNasc: json['parDatanasc'],
-      parEmail: json['parEmail'],
-      proCodigo: json['proCodigo'],
+      parCodigo: json['parCodigo'] ?? 0,
+      parNome: json['parNome'] ?? '',
+      parCpf: json['parCpf'] ?? '',
+      parFone: json['parFone'] ?? '',
+      parEndereco: json['parEndereco'] ?? '',
+      parCidade: json['parCidade'] ?? '',
+      parUf: json['parUf'] ?? '',
+      parDataNasc: json['parDatanasc'] ?? '',
+      parEmail: json['parEmail'] ?? '',
+      proCodigo: json['proCodigo'] ?? 0,
     );
   }
 
@@ -47,7 +47,7 @@ class ParticipanteModel {
       'parEndereco': parEndereco,
       'parCidade': parCidade,
       'parUf': parUf,
-      'parDataNasc': parDataNasc,
+      'parDatanasc': parDataNasc,
       'parEmail': parEmail,
       'proCodigo': proCodigo,
     };

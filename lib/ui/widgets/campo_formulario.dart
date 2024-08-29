@@ -7,11 +7,14 @@ class CampoFormulario extends StatelessWidget {
   String label;
   TextEditingController controller;
   TextInputFormatter mask;
-  CampoFormulario(
-      {super.key,
-      required this.label,
-      required this.controller,
-      required this.mask});
+  Function? onChanged;
+  CampoFormulario({
+    super.key,
+    required this.label,
+    required this.controller,
+    required this.mask,
+    this.onChanged,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -20,6 +23,13 @@ class CampoFormulario extends StatelessWidget {
       child: TextField(
         controller: controller,
         inputFormatters: [mask],
+        onChanged: (value) {
+          if (onChanged != null) {
+            onChanged!(value);
+          } else {
+            null;
+          }
+        },
         decoration: InputDecoration(
           labelText: label,
           labelStyle: const TextStyle(
