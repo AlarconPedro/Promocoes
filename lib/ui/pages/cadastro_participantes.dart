@@ -98,6 +98,13 @@ class _CadastroParticipantesState extends State<CadastroParticipantes> {
           participanteCadastrado = true;
           // widget.onClique();
         });
+      } else {
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(
+            content: Text('Erro ao cadastrar participante'),
+            backgroundColor: Cores.vermelho,
+          ),
+        );
       }
     } catch (e) {
       print(e);
@@ -524,7 +531,25 @@ class _CadastroParticipantesState extends State<CadastroParticipantes> {
                               child: CupertinoButton(
                                 onPressed: () {
                                   // widget.onClique();
-                                  cadastrarParticipante();
+                                  if (nomeController.text.isEmpty ||
+                                      cpfController.text.isEmpty ||
+                                      dataNascimentoController.text.isEmpty ||
+                                      enderecoController.text.isEmpty ||
+                                      emailController.text.isEmpty ||
+                                      telefoneController.text.isEmpty ||
+                                      cidadeController.text.isEmpty ||
+                                      ufController.text.isEmpty) {
+                                    ScaffoldMessenger.of(context).showSnackBar(
+                                      const SnackBar(
+                                        content:
+                                            Text('Preencha todos os campos'),
+                                        backgroundColor: Cores.vermelho,
+                                      ),
+                                    );
+                                    return;
+                                  } else {
+                                    cadastrarParticipante();
+                                  }
                                 },
                                 padding: const EdgeInsets.symmetric(
                                     vertical: 5, horizontal: 30),
