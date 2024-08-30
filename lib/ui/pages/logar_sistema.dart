@@ -1,8 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
-import 'package:promocoes/api/api_promocao.dart';
-import 'package:promocoes/models/participante_model.dart';
+import 'package:cpf_cnpj_validator/cpf_validator.dart';
 import 'package:promocoes/ui/widgets/loading.dart';
 
 import '../../classes/classes.dart';
@@ -85,7 +84,16 @@ class _LogarSistemaState extends State<LogarSistema> {
                         );
                         return;
                       }
-                      widget.onClick(cpfController.text);
+                      if (CPFValidator.isValid(cpfController.text)) {
+                        widget.onClick(cpfController.text);
+                      } else {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          const SnackBar(
+                            content: Text('CPF inválido'),
+                            backgroundColor: Cores.vermelho,
+                          ),
+                        );
+                      }
                     },
                     padding:
                         const EdgeInsets.symmetric(vertical: 5, horizontal: 30),
