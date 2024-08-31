@@ -38,6 +38,11 @@ class _CadastroParticipantesState extends State<CadastroParticipantes> {
     filter: {'#': RegExp(r'[0-9]')},
   );
 
+  MaskTextInputFormatter telefoneFormatter = MaskTextInputFormatter(
+    mask: '(##) #####-####',
+    filter: {'#': RegExp(r'[0-9]')},
+  );
+
   TextEditingController cpfController = TextEditingController();
   TextEditingController nomeController = TextEditingController();
   TextEditingController emailController = TextEditingController();
@@ -174,7 +179,7 @@ class _CadastroParticipantesState extends State<CadastroParticipantes> {
           child: Container(
             width: 800,
             // width: largura,
-            height: 650,
+            height: 780,
             // height: altura,
             decoration: BoxDecoration(
               color: Cores.branco,
@@ -344,7 +349,7 @@ class _CadastroParticipantesState extends State<CadastroParticipantes> {
                                         ),
                                       ),
                                       Text(
-                                        cpfFormatter
+                                        telefoneFormatter
                                             .maskText(telefoneController.text),
                                         style: const TextStyle(
                                           color: Cores.preto,
@@ -433,7 +438,7 @@ class _CadastroParticipantesState extends State<CadastroParticipantes> {
                                               child: AbsorbPointer(
                                                 absorbing: true,
                                                 child: CampoFormulario(
-                                                  label: 'CPF',
+                                                  label: 'CPF *',
                                                   controller: cpfController,
                                                   mask: cpfFormatter,
                                                   onChanged: (value) {
@@ -472,7 +477,7 @@ class _CadastroParticipantesState extends State<CadastroParticipantes> {
                                           ),
                                           Expanded(
                                             child: CampoFormulario(
-                                              label: 'Nome',
+                                              label: 'Nome Completo *',
                                               controller: nomeController,
                                               mask: MaskTextInputFormatter(),
                                             ),
@@ -483,7 +488,7 @@ class _CadastroParticipantesState extends State<CadastroParticipantes> {
                                         children: [
                                           Expanded(
                                             child: CampoFormulario(
-                                              label: 'Data Nascimento',
+                                              label: 'Data Nascimento *',
                                               controller:
                                                   dataNascimentoController,
                                               mask: MaskTextInputFormatter(
@@ -494,23 +499,7 @@ class _CadastroParticipantesState extends State<CadastroParticipantes> {
                                           ),
                                           Expanded(
                                             child: CampoFormulario(
-                                              label: 'Endereço',
-                                              controller: enderecoController,
-                                              mask: MaskTextInputFormatter(),
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                      CampoFormulario(
-                                        label: 'E-mail',
-                                        controller: emailController,
-                                        mask: MaskTextInputFormatter(),
-                                      ),
-                                      Row(
-                                        children: [
-                                          Expanded(
-                                            child: CampoFormulario(
-                                              label: 'Telefone',
+                                              label: 'Telefone *',
                                               controller: telefoneController,
                                               mask: MaskTextInputFormatter(
                                                 mask: '(##) #####-####',
@@ -518,16 +507,25 @@ class _CadastroParticipantesState extends State<CadastroParticipantes> {
                                               ),
                                             ),
                                           ),
+                                        ],
+                                      ),
+                                      CampoFormulario(
+                                        label: 'Endereço',
+                                        controller: enderecoController,
+                                        mask: MaskTextInputFormatter(),
+                                      ),
+                                      Row(
+                                        children: [
                                           Expanded(
                                             child: CampoFormulario(
-                                              label: 'Cidade',
+                                              label: 'Cidade *',
                                               controller: cidadeController,
                                               mask: MaskTextInputFormatter(),
                                             ),
                                           ),
                                           Expanded(
                                             child: CampoFormulario(
-                                              label: 'UF',
+                                              label: 'UF *',
                                               controller: ufController,
                                               mask: MaskTextInputFormatter(
                                                 mask: '##',
@@ -536,6 +534,11 @@ class _CadastroParticipantesState extends State<CadastroParticipantes> {
                                             ),
                                           ),
                                         ],
+                                      ),
+                                      CampoFormulario(
+                                        label: 'E-mail',
+                                        controller: emailController,
+                                        mask: MaskTextInputFormatter(),
                                       ),
                                     ],
                                   ),
@@ -548,8 +551,8 @@ class _CadastroParticipantesState extends State<CadastroParticipantes> {
                                             cpfController.text.isEmpty ||
                                             dataNascimentoController
                                                 .text.isEmpty ||
-                                            enderecoController.text.isEmpty ||
-                                            emailController.text.isEmpty ||
+                                            // enderecoController.text.isEmpty ||
+                                            // emailController.text.isEmpty ||
                                             telefoneController.text.isEmpty ||
                                             cidadeController.text.isEmpty ||
                                             ufController.text.isEmpty) {
@@ -557,7 +560,7 @@ class _CadastroParticipantesState extends State<CadastroParticipantes> {
                                               .showSnackBar(
                                             const SnackBar(
                                               content: Text(
-                                                  'Preencha todos os campos'),
+                                                  'Preencha os campos marcos com (*)'),
                                               backgroundColor: Cores.vermelho,
                                             ),
                                           );
@@ -567,7 +570,7 @@ class _CadastroParticipantesState extends State<CadastroParticipantes> {
                                         }
                                       },
                                       padding: const EdgeInsets.symmetric(
-                                          vertical: 5, horizontal: 30),
+                                          vertical: 5, horizontal: 15),
                                       color: Cores.verde,
                                       child: carregando
                                           ? loading(cor: Cores.branco)
@@ -583,6 +586,7 @@ class _CadastroParticipantesState extends State<CadastroParticipantes> {
                                 ],
                               ),
                       ),
+                SizedBox(height: 20),
                 AbsorbPointer(
                   absorbing: !participanteCadastrado,
                   child: Opacity(
