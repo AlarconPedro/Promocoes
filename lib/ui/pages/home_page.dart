@@ -92,7 +92,7 @@ class _HomePageState extends State<HomePage> {
                               Navigator.push(
                                 context,
                                 CupertinoDialogRoute(
-                                  builder: (context) => const MeusCupons(),
+                                  builder: (context) => const MeusCuponsPage(),
                                   context: context,
                                 ),
                               );
@@ -146,7 +146,8 @@ class _HomePageState extends State<HomePage> {
                                 Navigator.push(
                                   context,
                                   CupertinoDialogRoute(
-                                    builder: (context) => const MeusCupons(),
+                                    builder: (context) =>
+                                        const MeusCuponsPage(),
                                     context: context,
                                   ),
                                 );

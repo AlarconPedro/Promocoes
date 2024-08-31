@@ -38,9 +38,9 @@ class _SorteiosPageState extends State<SorteiosPage> {
                 ),
               ],
             ),
-            child: Column(
+            child: const Column(
               children: [
-                const Padding(
+                Padding(
                   padding: EdgeInsets.symmetric(vertical: 20, horizontal: 10),
                   child: Text(
                     'Sorteios',
@@ -52,15 +52,19 @@ class _SorteiosPageState extends State<SorteiosPage> {
                   ),
                 ),
                 Expanded(
-                  child: ListView.builder(
-                      itemCount: 10,
-                      itemBuilder: (context, index) {
-                        return const ListTile(
-                          title: Text(
-                              'Sorteio: item | Ocorrido: 00/00/2024 | Ganhador: Fulano de Tal'),
-                        );
-                      }),
-                ),
+                    child: Center(
+                  child: Text("Nennhum sorteio disponível !"),
+                ))
+                // Expanded(
+                //   child: ListView.builder(
+                //       itemCount: 10,
+                //       itemBuilder: (context, index) {
+                //         return const ListTile(
+                //           title: Text(
+                //               'Sorteio: item | Ocorrido: 00/00/2024 | Ganhador: Fulano de Tal'),
+                //         );
+                //       }),
+                // ),
               ],
             ),
           ),

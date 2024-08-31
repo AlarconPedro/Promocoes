@@ -96,6 +96,12 @@ class _CadastroParticipantesState extends State<CadastroParticipantes> {
       if (response.statusCode == 200) {
         setState(() {
           participanteCadastrado = true;
+          ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(
+              content: Text('Participante cadastrado com sucesso'),
+              backgroundColor: Cores.verde,
+            ),
+          );
           // widget.onClique();
         });
       } else {
@@ -119,11 +125,29 @@ class _CadastroParticipantesState extends State<CadastroParticipantes> {
       if (response.statusCode == 200) {
         setState(() {
           participanteCadastrado = true;
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(
+              content: Text(response.body),
+              backgroundColor: Cores.verde,
+            ),
+          );
           // widget.onClique();
         });
+      } else {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text(response.body),
+            backgroundColor: Cores.vermelho,
+          ),
+        );
       }
     } catch (e) {
-      print(e);
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text('Erro ao cadastrar cupom'),
+          backgroundColor: Cores.vermelho,
+        ),
+      );
     }
     setState(() => carregando = false);
   }
@@ -167,406 +191,423 @@ class _CadastroParticipantesState extends State<CadastroParticipantes> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 participanteCadastrado
-                    ? Padding(
-                        padding: const EdgeInsets.symmetric(vertical: 20),
-                        child: Column(
-                          children: [
-                            const Text(
-                              'Participante Cadastrado',
-                              style: TextStyle(
-                                color: Cores.preto,
-                                fontSize: 22,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                            const SizedBox(height: 20),
-                            Padding(
-                              padding: const EdgeInsets.symmetric(
-                                vertical: 5,
-                                horizontal: 10,
-                              ),
-                              child: Expanded(
-                                child: Row(
-                                  children: [
-                                    const Text(
-                                      'CPF: ',
-                                      style: TextStyle(
-                                        color: Cores.preto,
-                                        fontSize: 20,
-                                        fontWeight: FontWeight.bold,
-                                      ),
-                                    ),
-                                    Text(
-                                      cpfFormatter.maskText(cpfController.text),
-                                      style: const TextStyle(
-                                        color: Cores.preto,
-                                        fontSize: 18,
-                                      ),
-                                    ),
-                                  ],
+                    ? carregando
+                        ? Expanded(child: loading())
+                        : Padding(
+                            padding: const EdgeInsets.symmetric(vertical: 20),
+                            child: Column(
+                              children: [
+                                const Text(
+                                  'Participante Cadastrado',
+                                  style: TextStyle(
+                                    color: Cores.preto,
+                                    fontSize: 22,
+                                    fontWeight: FontWeight.bold,
+                                  ),
                                 ),
-                              ),
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.symmetric(
-                                vertical: 5,
-                                horizontal: 10,
-                              ),
-                              child: Expanded(
-                                child: Row(
-                                  children: [
-                                    const Text(
-                                      'Nome: ',
-                                      style: TextStyle(
-                                        color: Cores.preto,
-                                        fontSize: 20,
-                                        fontWeight: FontWeight.bold,
-                                      ),
+                                const SizedBox(height: 20),
+                                Padding(
+                                  padding: const EdgeInsets.symmetric(
+                                    vertical: 5,
+                                    horizontal: 10,
+                                  ),
+                                  child: Expanded(
+                                    child: Row(
+                                      children: [
+                                        const Text(
+                                          'CPF: ',
+                                          style: TextStyle(
+                                            color: Cores.preto,
+                                            fontSize: 20,
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                        ),
+                                        Text(
+                                          cpfFormatter
+                                              .maskText(cpfController.text),
+                                          style: const TextStyle(
+                                            color: Cores.preto,
+                                            fontSize: 18,
+                                          ),
+                                        ),
+                                      ],
                                     ),
-                                    Text(
-                                      nomeController.text,
-                                      style: const TextStyle(
-                                        color: Cores.preto,
-                                        fontSize: 18,
-                                      ),
-                                    ),
-                                  ],
+                                  ),
                                 ),
-                              ),
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.symmetric(
-                                vertical: 5,
-                                horizontal: 10,
-                              ),
-                              child: Expanded(
-                                child: Row(
-                                  children: [
-                                    const Text(
-                                      'Data Nascimento: ',
-                                      style: TextStyle(
-                                        color: Cores.preto,
-                                        fontSize: 20,
-                                        fontWeight: FontWeight.bold,
-                                      ),
+                                Padding(
+                                  padding: const EdgeInsets.symmetric(
+                                    vertical: 5,
+                                    horizontal: 10,
+                                  ),
+                                  child: Expanded(
+                                    child: Row(
+                                      children: [
+                                        const Text(
+                                          'Nome: ',
+                                          style: TextStyle(
+                                            color: Cores.preto,
+                                            fontSize: 20,
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                        ),
+                                        Text(
+                                          nomeController.text,
+                                          style: const TextStyle(
+                                            color: Cores.preto,
+                                            fontSize: 18,
+                                          ),
+                                        ),
+                                      ],
                                     ),
-                                    Text(
-                                      FuncoesData.dataFormatada(
-                                          dataNascimentoController.text),
-                                      style: const TextStyle(
-                                        color: Cores.preto,
-                                        fontSize: 18,
-                                      ),
-                                    ),
-                                  ],
+                                  ),
                                 ),
-                              ),
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.symmetric(
-                                  vertical: 5, horizontal: 10),
-                              child: Expanded(
-                                child: Row(
-                                  children: [
-                                    const Text(
-                                      'Endereço: ',
-                                      style: TextStyle(
-                                        color: Cores.preto,
-                                        fontSize: 20,
-                                        fontWeight: FontWeight.bold,
-                                      ),
+                                Padding(
+                                  padding: const EdgeInsets.symmetric(
+                                    vertical: 5,
+                                    horizontal: 10,
+                                  ),
+                                  child: Expanded(
+                                    child: Row(
+                                      children: [
+                                        const Text(
+                                          'Data Nascimento: ',
+                                          style: TextStyle(
+                                            color: Cores.preto,
+                                            fontSize: 20,
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                        ),
+                                        Text(
+                                          FuncoesData.dataFormatada(
+                                              dataNascimentoController.text),
+                                          style: const TextStyle(
+                                            color: Cores.preto,
+                                            fontSize: 18,
+                                          ),
+                                        ),
+                                      ],
                                     ),
-                                    Text(
-                                      enderecoController.text,
-                                      style: const TextStyle(
-                                        color: Cores.preto,
-                                        fontSize: 18,
-                                      ),
-                                    ),
-                                  ],
+                                  ),
                                 ),
-                              ),
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.symmetric(
-                                  vertical: 5, horizontal: 10),
-                              child: Expanded(
-                                child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.start,
-                                  children: [
-                                    const Text(
-                                      'E-mail: ',
-                                      style: TextStyle(
-                                        color: Cores.preto,
-                                        fontSize: 20,
-                                        fontWeight: FontWeight.bold,
-                                      ),
+                                Padding(
+                                  padding: const EdgeInsets.symmetric(
+                                      vertical: 5, horizontal: 10),
+                                  child: Expanded(
+                                    child: Row(
+                                      children: [
+                                        const Text(
+                                          'Endereço: ',
+                                          style: TextStyle(
+                                            color: Cores.preto,
+                                            fontSize: 20,
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                        ),
+                                        Text(
+                                          enderecoController.text,
+                                          style: const TextStyle(
+                                            color: Cores.preto,
+                                            fontSize: 18,
+                                          ),
+                                        ),
+                                      ],
                                     ),
-                                    Text(
-                                      emailController.text,
-                                      style: const TextStyle(
-                                        color: Cores.preto,
-                                        fontSize: 18,
-                                      ),
-                                    ),
-                                  ],
+                                  ),
                                 ),
-                              ),
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.symmetric(
-                                  horizontal: 10, vertical: 5),
-                              child: Expanded(
-                                child: Row(
-                                  children: [
-                                    const Text(
-                                      'Telefone: ',
-                                      style: TextStyle(
-                                        color: Cores.preto,
-                                        fontSize: 20,
-                                        fontWeight: FontWeight.bold,
-                                      ),
+                                Padding(
+                                  padding: const EdgeInsets.symmetric(
+                                      vertical: 5, horizontal: 10),
+                                  child: Expanded(
+                                    child: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.start,
+                                      children: [
+                                        const Text(
+                                          'E-mail: ',
+                                          style: TextStyle(
+                                            color: Cores.preto,
+                                            fontSize: 20,
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                        ),
+                                        Text(
+                                          emailController.text,
+                                          style: const TextStyle(
+                                            color: Cores.preto,
+                                            fontSize: 18,
+                                          ),
+                                        ),
+                                      ],
                                     ),
-                                    Text(
-                                      cpfFormatter
-                                          .maskText(telefoneController.text),
-                                      style: const TextStyle(
-                                        color: Cores.preto,
-                                        fontSize: 18,
-                                      ),
-                                    ),
-                                  ],
+                                  ),
                                 ),
-                              ),
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.symmetric(
-                                  horizontal: 10, vertical: 5),
-                              child: Expanded(
-                                child: Row(
-                                  children: [
-                                    const Text(
-                                      'Cidade: ',
-                                      style: TextStyle(
-                                        color: Cores.preto,
-                                        fontSize: 20,
-                                        fontWeight: FontWeight.bold,
-                                      ),
+                                Padding(
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 10, vertical: 5),
+                                  child: Expanded(
+                                    child: Row(
+                                      children: [
+                                        const Text(
+                                          'Telefone: ',
+                                          style: TextStyle(
+                                            color: Cores.preto,
+                                            fontSize: 20,
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                        ),
+                                        Text(
+                                          cpfFormatter.maskText(
+                                              telefoneController.text),
+                                          style: const TextStyle(
+                                            color: Cores.preto,
+                                            fontSize: 18,
+                                          ),
+                                        ),
+                                      ],
                                     ),
-                                    Text(
-                                      cidadeController.text,
-                                      style: const TextStyle(
-                                        color: Cores.preto,
-                                        fontSize: 20,
-                                        fontWeight: FontWeight.bold,
-                                      ),
-                                    ),
-                                  ],
+                                  ),
                                 ),
-                              ),
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.symmetric(
-                                  horizontal: 10, vertical: 5),
-                              child: Expanded(
-                                child: Row(
-                                  children: [
-                                    const Text(
-                                      'UF: ',
-                                      style: TextStyle(
-                                        color: Cores.preto,
-                                        fontSize: 20,
-                                        fontWeight: FontWeight.bold,
-                                      ),
+                                Padding(
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 10, vertical: 5),
+                                  child: Expanded(
+                                    child: Row(
+                                      children: [
+                                        const Text(
+                                          'Cidade: ',
+                                          style: TextStyle(
+                                            color: Cores.preto,
+                                            fontSize: 20,
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                        ),
+                                        Text(
+                                          cidadeController.text,
+                                          style: const TextStyle(
+                                            color: Cores.preto,
+                                            fontSize: 20,
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                        ),
+                                      ],
                                     ),
-                                    Text(
-                                      ufController.text,
-                                      style: const TextStyle(
-                                        color: Cores.preto,
-                                        fontSize: 18,
-                                      ),
-                                    ),
-                                  ],
+                                  ),
                                 ),
-                              ),
+                                Padding(
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 10, vertical: 5),
+                                  child: Expanded(
+                                    child: Row(
+                                      children: [
+                                        const Text(
+                                          'UF: ',
+                                          style: TextStyle(
+                                            color: Cores.preto,
+                                            fontSize: 20,
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                        ),
+                                        Text(
+                                          ufController.text,
+                                          style: const TextStyle(
+                                            color: Cores.preto,
+                                            fontSize: 18,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                              ],
                             ),
-                          ],
-                        ),
-                      )
+                          )
                     : Expanded(
-                        child: Column(
-                          children: [
-                            const Padding(
-                              padding: EdgeInsets.symmetric(
-                                horizontal: 10,
-                                vertical: 20,
-                              ),
-                              child: Text(
-                                'Cadastro de Participantes',
-                                style: TextStyle(
-                                  color: Cores.preto,
-                                  fontSize: 22,
-                                  fontWeight: FontWeight.bold,
-                                ),
-                              ),
-                            ),
-                            SizedBox(
-                              child: Column(
+                        child: carregando
+                            ? loading()
+                            : Column(
                                 children: [
-                                  Row(
-                                    children: [
-                                      Expanded(
-                                        child: Opacity(
-                                          opacity: 0.5,
-                                          child: AbsorbPointer(
-                                            absorbing: true,
-                                            child: CampoFormulario(
-                                              label: 'CPF',
-                                              controller: cpfController,
-                                              mask: cpfFormatter,
-                                              onChanged: (value) {
-                                                if (value.length == 14) {
-                                                  setState(() {
-                                                    carregando = true;
-                                                  });
-                                                  ApiPromocao()
-                                                      .getDadosParticipante(
-                                                          value)
-                                                      .then((participante) {
-                                                    if (participante != null) {
-                                                      setState(() {
-                                                        participanteCadastrado =
-                                                            true;
-                                                        alimentarCampos(
-                                                          ParticipanteModel
-                                                              .fromJson(
-                                                            json.decode(
-                                                                participante
-                                                                    .body),
-                                                          ),
-                                                        );
-                                                      });
-                                                    }
-                                                  });
-                                                  setState(() {
-                                                    carregando = false;
-                                                  });
-                                                }
-                                              },
+                                  const Padding(
+                                    padding: EdgeInsets.symmetric(
+                                      horizontal: 10,
+                                      vertical: 20,
+                                    ),
+                                    child: Text(
+                                      'Cadastro de Participantes',
+                                      style: TextStyle(
+                                        color: Cores.preto,
+                                        fontSize: 22,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
+                                  ),
+                                  SizedBox(
+                                    child: Column(
+                                      children: [
+                                        Row(
+                                          children: [
+                                            Expanded(
+                                              child: Opacity(
+                                                opacity: 0.5,
+                                                child: AbsorbPointer(
+                                                  absorbing: true,
+                                                  child: CampoFormulario(
+                                                    label: 'CPF',
+                                                    controller: cpfController,
+                                                    mask: cpfFormatter,
+                                                    onChanged: (value) {
+                                                      if (value.length == 14) {
+                                                        setState(() {
+                                                          carregando = true;
+                                                        });
+                                                        ApiPromocao()
+                                                            .getDadosParticipante(
+                                                                value)
+                                                            .then(
+                                                                (participante) {
+                                                          if (participante !=
+                                                              null) {
+                                                            setState(() {
+                                                              participanteCadastrado =
+                                                                  true;
+                                                              alimentarCampos(
+                                                                ParticipanteModel
+                                                                    .fromJson(
+                                                                  json.decode(
+                                                                      participante
+                                                                          .body),
+                                                                ),
+                                                              );
+                                                            });
+                                                          }
+                                                        });
+                                                        setState(() {
+                                                          carregando = false;
+                                                        });
+                                                      }
+                                                    },
+                                                  ),
+                                                ),
+                                              ),
                                             ),
-                                          ),
+                                            Expanded(
+                                              child: CampoFormulario(
+                                                label: 'Nome',
+                                                controller: nomeController,
+                                                mask: MaskTextInputFormatter(),
+                                              ),
+                                            )
+                                          ],
                                         ),
-                                      ),
-                                      Expanded(
-                                        child: CampoFormulario(
-                                          label: 'Nome',
-                                          controller: nomeController,
+                                        Row(
+                                          children: [
+                                            Expanded(
+                                              child: CampoFormulario(
+                                                label: 'Data Nascimento',
+                                                controller:
+                                                    dataNascimentoController,
+                                                mask: MaskTextInputFormatter(
+                                                  mask: '##/##/####',
+                                                  filter: {
+                                                    '#': RegExp(r'[0-9]')
+                                                  },
+                                                ),
+                                              ),
+                                            ),
+                                            Expanded(
+                                              child: CampoFormulario(
+                                                label: 'Endereço',
+                                                controller: enderecoController,
+                                                mask: MaskTextInputFormatter(),
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                        CampoFormulario(
+                                          label: 'E-mail',
+                                          controller: emailController,
                                           mask: MaskTextInputFormatter(),
                                         ),
-                                      )
-                                    ],
+                                        Row(
+                                          children: [
+                                            Expanded(
+                                              child: CampoFormulario(
+                                                label: 'Telefone',
+                                                controller: telefoneController,
+                                                mask: MaskTextInputFormatter(
+                                                  mask: '(##) #####-####',
+                                                  filter: {
+                                                    '#': RegExp(r'[0-9]')
+                                                  },
+                                                ),
+                                              ),
+                                            ),
+                                            Expanded(
+                                              child: CampoFormulario(
+                                                label: 'Cidade',
+                                                controller: cidadeController,
+                                                mask: MaskTextInputFormatter(),
+                                              ),
+                                            ),
+                                            Expanded(
+                                              child: CampoFormulario(
+                                                label: 'UF',
+                                                controller: ufController,
+                                                mask: MaskTextInputFormatter(
+                                                  mask: '##',
+                                                  filter: {
+                                                    '#': RegExp(r'[A-Z]')
+                                                  },
+                                                ),
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ],
+                                    ),
                                   ),
-                                  Row(
-                                    children: [
-                                      Expanded(
-                                        child: CampoFormulario(
-                                          label: 'Data Nascimento',
-                                          controller: dataNascimentoController,
-                                          mask: MaskTextInputFormatter(
-                                            mask: '##/##/####',
-                                            filter: {'#': RegExp(r'[0-9]')},
-                                          ),
-                                        ),
-                                      ),
-                                      Expanded(
-                                        child: CampoFormulario(
-                                          label: 'Endereço',
-                                          controller: enderecoController,
-                                          mask: MaskTextInputFormatter(),
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                  CampoFormulario(
-                                    label: 'E-mail',
-                                    controller: emailController,
-                                    mask: MaskTextInputFormatter(),
-                                  ),
-                                  Row(
-                                    children: [
-                                      Expanded(
-                                        child: CampoFormulario(
-                                          label: 'Telefone',
-                                          controller: telefoneController,
-                                          mask: MaskTextInputFormatter(
-                                            mask: '(##) #####-####',
-                                            filter: {'#': RegExp(r'[0-9]')},
-                                          ),
-                                        ),
-                                      ),
-                                      Expanded(
-                                        child: CampoFormulario(
-                                          label: 'Cidade',
-                                          controller: cidadeController,
-                                          mask: MaskTextInputFormatter(),
-                                        ),
-                                      ),
-                                      Expanded(
-                                        child: CampoFormulario(
-                                          label: 'UF',
-                                          controller: ufController,
-                                          mask: MaskTextInputFormatter(
-                                            mask: '##',
-                                            filter: {'#': RegExp(r'[A-Z]')},
-                                          ),
-                                        ),
-                                      ),
-                                    ],
+                                  Padding(
+                                    padding: const EdgeInsets.all(20),
+                                    child: CupertinoButton(
+                                      onPressed: () {
+                                        // widget.onClique();
+                                        if (nomeController.text.isEmpty ||
+                                            cpfController.text.isEmpty ||
+                                            dataNascimentoController
+                                                .text.isEmpty ||
+                                            enderecoController.text.isEmpty ||
+                                            emailController.text.isEmpty ||
+                                            telefoneController.text.isEmpty ||
+                                            cidadeController.text.isEmpty ||
+                                            ufController.text.isEmpty) {
+                                          ScaffoldMessenger.of(context)
+                                              .showSnackBar(
+                                            const SnackBar(
+                                              content: Text(
+                                                  'Preencha todos os campos'),
+                                              backgroundColor: Cores.vermelho,
+                                            ),
+                                          );
+                                          return;
+                                        } else {
+                                          cadastrarParticipante();
+                                        }
+                                      },
+                                      padding: const EdgeInsets.symmetric(
+                                          vertical: 5, horizontal: 30),
+                                      color: Cores.verde,
+                                      child: carregando
+                                          ? loading(cor: Cores.branco)
+                                          : const Text(
+                                              'Cadastrar',
+                                              style: TextStyle(
+                                                color: Cores.branco,
+                                                fontSize: 18,
+                                              ),
+                                            ),
+                                    ),
                                   ),
                                 ],
                               ),
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.all(20),
-                              child: CupertinoButton(
-                                onPressed: () {
-                                  // widget.onClique();
-                                  if (nomeController.text.isEmpty ||
-                                      cpfController.text.isEmpty ||
-                                      dataNascimentoController.text.isEmpty ||
-                                      enderecoController.text.isEmpty ||
-                                      emailController.text.isEmpty ||
-                                      telefoneController.text.isEmpty ||
-                                      cidadeController.text.isEmpty ||
-                                      ufController.text.isEmpty) {
-                                    ScaffoldMessenger.of(context).showSnackBar(
-                                      const SnackBar(
-                                        content:
-                                            Text('Preencha todos os campos'),
-                                        backgroundColor: Cores.vermelho,
-                                      ),
-                                    );
-                                    return;
-                                  } else {
-                                    cadastrarParticipante();
-                                  }
-                                },
-                                padding: const EdgeInsets.symmetric(
-                                    vertical: 5, horizontal: 30),
-                                color: Cores.verde,
-                                child: carregando
-                                    ? loading(cor: Cores.branco)
-                                    : const Text(
-                                        'Cadastrar',
-                                        style: TextStyle(
-                                          color: Cores.branco,
-                                          fontSize: 18,
-                                        ),
-                                      ),
-                              ),
-                            ),
-                          ],
-                        ),
                       ),
                 AbsorbPointer(
                   absorbing: !participanteCadastrado,
@@ -644,6 +685,30 @@ class _CadastroParticipantesState extends State<CadastroParticipantes> {
                                 child: const Text(
                                   "Meus Cupons >",
                                   style: TextStyle(color: Cores.preto),
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                        Row(
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.symmetric(
+                                horizontal: 10,
+                                vertical: 10,
+                              ),
+                              child: CupertinoButton(
+                                color: Cores.vermelho,
+                                padding: const EdgeInsets.symmetric(
+                                  vertical: 5,
+                                  horizontal: 30,
+                                ),
+                                onPressed: () {
+                                  widget.onClique();
+                                },
+                                child: const Text(
+                                  "Voltar",
+                                  style: TextStyle(color: Cores.branco),
                                 ),
                               ),
                             ),

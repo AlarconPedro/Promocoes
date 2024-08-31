@@ -6,6 +6,7 @@ import 'package:promocoes/models/cupom_model.dart';
 
 import '../../api/api_promocao.dart';
 import '../../classes/classes.dart';
+import '../widgets/loading.dart';
 
 class ListarCupons extends StatefulWidget {
   Function onClique;
@@ -33,8 +34,8 @@ class _ListarCuponsState extends State<ListarCupons> {
     var response =
         await ApiPromocao().getParticipanteCupons(codigoParticipante);
     if (response.statusCode == 200) {
-      var cupons = json.decode(response.body);
-      for (var item in cupons) {
+      var decoded = json.decode(response.body);
+      for (var item in decoded) {
         cupons.add(CupomModel.fromJson(item));
       }
     }
@@ -140,13 +141,82 @@ class _ListarCuponsState extends State<ListarCupons> {
               ),
               // CampoFormulario(label: 'Cupom'),
               Expanded(
-                child: ListView.builder(
-                    itemCount: cupons.length,
-                    itemBuilder: (context, index) {
-                      return ListTile(
-                        title: Text(cupons[index].cupNumero),
-                      );
-                    }),
+                child: carregando
+                    ? loading()
+                    : ListView.builder(
+                        itemCount: cupons.length,
+                        itemBuilder: (context, index) {
+                          return Padding(
+                            padding: const EdgeInsets.symmetric(
+                                vertical: 5, horizontal: 10),
+                            child: Container(
+                              decoration: const BoxDecoration(
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(10)),
+                                color: Cores.branco,
+                                boxShadow: [
+                                  BoxShadow(
+                                    color: Cores.cinza,
+                                    blurRadius: 3,
+                                    offset: Offset(0, 2),
+                                  ),
+                                ],
+                              ),
+                              child: Padding(
+                                padding: const EdgeInsets.symmetric(
+                                    horizontal: 15, vertical: 10),
+                                child: Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    const Icon(CupertinoIcons.tickets),
+                                    Text(cupons[index].cupNumero.toString()),
+                                    const Icon(CupertinoIcons.chevron_forward),
+                                  ],
+                                ),
+                              ),
+                            ),
+                          );
+                        }),
+              ),
+              Padding(
+                padding:
+                    const EdgeInsets.symmetric(vertical: 10, horizontal: 15),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    CupertinoButton(
+                      onPressed: () {
+                        widget.onClique();
+                      },
+                      padding: const EdgeInsets.symmetric(
+                          vertical: 15, horizontal: 30),
+                      color: Cores.vermelho,
+                      child: const Text(
+                        'Voltar',
+                        style: TextStyle(
+                          color: Cores.branco,
+                          fontSize: 18,
+                        ),
+                      ),
+                    ),
+                    CupertinoButton(
+                      onPressed: () {
+                        Navigator.pop(context);
+                      },
+                      padding: const EdgeInsets.symmetric(
+                          vertical: 15, horizontal: 30),
+                      color: Cores.verde,
+                      child: const Text(
+                        'Ok',
+                        style: TextStyle(
+                          color: Cores.branco,
+                          fontSize: 18,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ],
           ),

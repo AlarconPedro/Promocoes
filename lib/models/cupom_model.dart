@@ -16,13 +16,14 @@ class CupomModel {
   });
 
   factory CupomModel.fromJson(Map<String, dynamic> json) {
+    print(json['parCodigo']);
     return CupomModel(
-      cupCodigo: json['cupCodigo'],
-      cupNumero: json['cupNumero'],
-      proCodigo: json['proCodigo'],
-      cupSorteado: json['cupSorteado'],
-      cupVendido: json['cupVendido'],
-      parCodigo: json['parCodigo'],
+      cupCodigo: json['cupCodigo'] ?? 0,
+      cupNumero: json['cupNumero'] ?? '',
+      proCodigo: json['proCodigo'] ?? 0,
+      cupSorteado: json['cupSorteado'] ?? false,
+      cupVendido: json['cupVendido'] ?? false,
+      parCodigo: json['parCodigo'] ?? 0,
     );
   }
 

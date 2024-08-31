@@ -112,7 +112,7 @@ class _CadastroParticipantesPageState extends State<CadastroParticipantesPage> {
           CadastroParticipantes(
             onClique: () {
               _pageController.animateToPage(
-                2,
+                0,
                 duration: const Duration(milliseconds: 300),
                 curve: Curves.easeInOut,
               );
@@ -128,7 +128,13 @@ class _CadastroParticipantesPageState extends State<CadastroParticipantesPage> {
             cpf: participante.parCpf,
           ),
           ListarCupons(
-            onClique: () {},
+            onClique: () {
+              _pageController.animateToPage(
+                1,
+                duration: const Duration(milliseconds: 300),
+                curve: Curves.easeInOut,
+              );
+            },
             codigoParticipante: participante.parCodigo,
           ),
         ],
