@@ -10,10 +10,12 @@ import '../widgets/loading.dart';
 
 class ListarCupons extends StatefulWidget {
   Function onClique;
+  Function voltar;
   int? codigoParticipante;
   ListarCupons({
     super.key,
     required this.onClique,
+    required this.voltar,
     this.codigoParticipante,
   });
 
@@ -28,6 +30,8 @@ class _ListarCuponsState extends State<ListarCupons> {
   bool carregando = false;
 
   List<CupomModel> cupons = [];
+
+  TextEditingController cupomController = TextEditingController();
 
   buscarCupons(int codigoParticipante) async {
     setState(() => carregando = true);
@@ -45,6 +49,51 @@ class _ListarCuponsState extends State<ListarCupons> {
     //   var lista = json.decode(response.body);
     //   print(lista);
     // }
+  }
+
+  CupomModel alimentarDadosCupons() {
+    return CupomModel(
+      cupCodigo: 0,
+      parCodigo: widget.codigoParticipante!,
+      cupNumero: cupomController.text,
+      proCodigo: Globais.codigoPromocao,
+      cupSorteado: false,
+      cupVendido: false,
+    );
+  }
+
+  cadastrarCupon() async {
+    setState(() => carregando = true);
+    try {
+      var response = await ApiPromocao().addCupons(alimentarDadosCupons());
+      if (response.statusCode == 200) {
+        setState(() {
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(
+              content: Text(response.body),
+              backgroundColor: Cores.verde,
+            ),
+          );
+          // widget.onClique();
+        });
+        buscarCupons(widget.codigoParticipante!);
+      } else {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text(response.body),
+            backgroundColor: Cores.vermelho,
+          ),
+        );
+      }
+    } catch (e) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text('Erro ao cadastrar cupom'),
+          backgroundColor: Cores.vermelho,
+        ),
+      );
+    }
+    setState(() => carregando = false);
   }
 
   @override
@@ -99,6 +148,7 @@ class _ListarCuponsState extends State<ListarCupons> {
                       child: SizedBox(
                         height: 50,
                         child: TextField(
+                          controller: cupomController,
                           decoration: InputDecoration(
                             labelText: "Cupom",
                             labelStyle: const TextStyle(
@@ -116,7 +166,17 @@ class _ListarCuponsState extends State<ListarCupons> {
                       padding: const EdgeInsets.all(8.0),
                       child: CupertinoButton(
                         onPressed: () {
-                          widget.onClique();
+                          if (cupomController.text.isNotEmpty) {
+                            cadastrarCupon();
+                          } else {
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              const SnackBar(
+                                content: Text('Informe o número do cupom'),
+                                backgroundColor: Cores.vermelho,
+                              ),
+                            );
+                          }
+                          // widget.onClique();
                           // Navigator.pop(context);
                           // _pageController.animateToPage(
                           //   1,
@@ -171,7 +231,8 @@ class _ListarCuponsState extends State<ListarCupons> {
                                   children: [
                                     const Icon(CupertinoIcons.tickets),
                                     Text(cupons[index].cupNumero.toString()),
-                                    const Icon(CupertinoIcons.chevron_forward),
+                                    Container(),
+                                    // const Icon(CupertinoIcons.chevron_forward),
                                   ],
                                 ),
                               ),
@@ -187,7 +248,7 @@ class _ListarCuponsState extends State<ListarCupons> {
                   children: [
                     CupertinoButton(
                       onPressed: () {
-                        widget.onClique();
+                        widget.voltar();
                       },
                       padding: const EdgeInsets.symmetric(
                           vertical: 15, horizontal: 30),

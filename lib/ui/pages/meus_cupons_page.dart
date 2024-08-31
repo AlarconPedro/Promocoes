@@ -91,6 +91,13 @@ class _MeusCuponsPageState extends State<MeusCuponsPage> {
               carregando: carregando),
           ListarCupons(
             codigoParticipante: participante.parCodigo,
+            voltar: () {
+              pageController.animateToPage(
+                0,
+                duration: const Duration(milliseconds: 300),
+                curve: Curves.easeInOut,
+              );
+            },
             onClique: () {
               Navigator.pop(context);
             },

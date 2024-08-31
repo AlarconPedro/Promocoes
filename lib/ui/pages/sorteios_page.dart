@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import '../../classes/classes.dart';
@@ -38,9 +39,9 @@ class _SorteiosPageState extends State<SorteiosPage> {
                 ),
               ],
             ),
-            child: const Column(
+            child: Column(
               children: [
-                Padding(
+                const Padding(
                   padding: EdgeInsets.symmetric(vertical: 20, horizontal: 10),
                   child: Text(
                     'Sorteios',
@@ -51,10 +52,27 @@ class _SorteiosPageState extends State<SorteiosPage> {
                     ),
                   ),
                 ),
-                Expanded(
+                const Expanded(
                     child: Center(
                   child: Text("Nennhum sorteio disponível !"),
-                ))
+                )),
+                Padding(
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 10, vertical: 20),
+                  child: Row(
+                    children: [
+                      Expanded(
+                        child: CupertinoButton(
+                          color: Cores.vermelho,
+                          padding: const EdgeInsets.symmetric(
+                              vertical: 5, horizontal: 30),
+                          onPressed: () => widget.onClique(),
+                          child: const Text('Voltar'),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
                 // Expanded(
                 //   child: ListView.builder(
                 //       itemCount: 10,

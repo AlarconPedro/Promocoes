@@ -6,6 +6,7 @@ import 'package:promocoes/ui/pages/cadastro_participantes.dart';
 import 'package:promocoes/ui/pages/listar_cupons.dart';
 import 'package:promocoes/ui/pages/logar_sistema.dart';
 
+import '../../models/cupom_model.dart';
 import '../../models/participante_model.dart';
 
 class CadastroParticipantesPage extends StatefulWidget {
@@ -117,7 +118,8 @@ class _CadastroParticipantesPageState extends State<CadastroParticipantesPage> {
                 curve: Curves.easeInOut,
               );
             },
-            listarCupons: () {
+            listarCupons: () async {
+              await buscarDadosUsuario(participante.parCpf);
               _pageController.animateToPage(
                 2,
                 duration: const Duration(milliseconds: 300),
@@ -128,6 +130,13 @@ class _CadastroParticipantesPageState extends State<CadastroParticipantesPage> {
             cpf: participante.parCpf,
           ),
           ListarCupons(
+            voltar: () {
+              _pageController.animateToPage(
+                1,
+                duration: const Duration(milliseconds: 300),
+                curve: Curves.easeInOut,
+              );
+            },
             onClique: () {
               _pageController.animateToPage(
                 1,

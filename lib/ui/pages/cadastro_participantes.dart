@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:promocoes/classes/formatar_texto.dart';
 import 'package:promocoes/classes/funcoes_data.dart';
 import 'package:promocoes/models/cupom_model.dart';
 import 'package:promocoes/models/participante_model.dart';
@@ -101,12 +102,16 @@ class _CadastroParticipantesState extends State<CadastroParticipantes> {
       if (response.statusCode == 200) {
         setState(() {
           participanteCadastrado = true;
+          widget.participante = ParticipanteModel.fromJson(
+            json.decode(response.body),
+          );
           ScaffoldMessenger.of(context).showSnackBar(
             const SnackBar(
               content: Text('Participante cadastrado com sucesso'),
               backgroundColor: Cores.verde,
             ),
           );
+          widget.listarCupons();
           // widget.onClique();
         });
       } else {
@@ -179,7 +184,7 @@ class _CadastroParticipantesState extends State<CadastroParticipantes> {
           child: Container(
             width: 800,
             // width: largura,
-            height: 780,
+            height: 720,
             // height: altura,
             decoration: BoxDecoration(
               color: Cores.branco,
@@ -222,7 +227,7 @@ class _CadastroParticipantesState extends State<CadastroParticipantes> {
                                         'CPF: ',
                                         style: TextStyle(
                                           color: Cores.preto,
-                                          fontSize: 20,
+                                          fontSize: 18,
                                           fontWeight: FontWeight.bold,
                                         ),
                                       ),
@@ -231,7 +236,7 @@ class _CadastroParticipantesState extends State<CadastroParticipantes> {
                                             .maskText(cpfController.text),
                                         style: const TextStyle(
                                           color: Cores.preto,
-                                          fontSize: 18,
+                                          fontSize: 16,
                                         ),
                                       ),
                                     ],
@@ -248,7 +253,7 @@ class _CadastroParticipantesState extends State<CadastroParticipantes> {
                                         'Nome: ',
                                         style: TextStyle(
                                           color: Cores.preto,
-                                          fontSize: 20,
+                                          fontSize: 18,
                                           fontWeight: FontWeight.bold,
                                         ),
                                       ),
@@ -256,7 +261,7 @@ class _CadastroParticipantesState extends State<CadastroParticipantes> {
                                         nomeController.text,
                                         style: const TextStyle(
                                           color: Cores.preto,
-                                          fontSize: 18,
+                                          fontSize: 16,
                                         ),
                                       ),
                                     ],
@@ -273,7 +278,7 @@ class _CadastroParticipantesState extends State<CadastroParticipantes> {
                                         'Data Nascimento: ',
                                         style: TextStyle(
                                           color: Cores.preto,
-                                          fontSize: 20,
+                                          fontSize: 18,
                                           fontWeight: FontWeight.bold,
                                         ),
                                       ),
@@ -282,7 +287,7 @@ class _CadastroParticipantesState extends State<CadastroParticipantes> {
                                             dataNascimentoController.text),
                                         style: const TextStyle(
                                           color: Cores.preto,
-                                          fontSize: 18,
+                                          fontSize: 16,
                                         ),
                                       ),
                                     ],
@@ -297,7 +302,7 @@ class _CadastroParticipantesState extends State<CadastroParticipantes> {
                                         'Endereço: ',
                                         style: TextStyle(
                                           color: Cores.preto,
-                                          fontSize: 20,
+                                          fontSize: 18,
                                           fontWeight: FontWeight.bold,
                                         ),
                                       ),
@@ -305,7 +310,7 @@ class _CadastroParticipantesState extends State<CadastroParticipantes> {
                                         enderecoController.text,
                                         style: const TextStyle(
                                           color: Cores.preto,
-                                          fontSize: 18,
+                                          fontSize: 16,
                                         ),
                                       ),
                                     ],
@@ -321,7 +326,7 @@ class _CadastroParticipantesState extends State<CadastroParticipantes> {
                                         'E-mail: ',
                                         style: TextStyle(
                                           color: Cores.preto,
-                                          fontSize: 20,
+                                          fontSize: 18,
                                           fontWeight: FontWeight.bold,
                                         ),
                                       ),
@@ -329,7 +334,7 @@ class _CadastroParticipantesState extends State<CadastroParticipantes> {
                                         emailController.text,
                                         style: const TextStyle(
                                           color: Cores.preto,
-                                          fontSize: 18,
+                                          fontSize: 16,
                                         ),
                                       ),
                                     ],
@@ -344,7 +349,7 @@ class _CadastroParticipantesState extends State<CadastroParticipantes> {
                                         'Telefone: ',
                                         style: TextStyle(
                                           color: Cores.preto,
-                                          fontSize: 20,
+                                          fontSize: 18,
                                           fontWeight: FontWeight.bold,
                                         ),
                                       ),
@@ -353,7 +358,7 @@ class _CadastroParticipantesState extends State<CadastroParticipantes> {
                                             .maskText(telefoneController.text),
                                         style: const TextStyle(
                                           color: Cores.preto,
-                                          fontSize: 18,
+                                          fontSize: 16,
                                         ),
                                       ),
                                     ],
@@ -368,7 +373,7 @@ class _CadastroParticipantesState extends State<CadastroParticipantes> {
                                         'Cidade: ',
                                         style: TextStyle(
                                           color: Cores.preto,
-                                          fontSize: 20,
+                                          fontSize: 18,
                                           fontWeight: FontWeight.bold,
                                         ),
                                       ),
@@ -376,7 +381,7 @@ class _CadastroParticipantesState extends State<CadastroParticipantes> {
                                         cidadeController.text,
                                         style: const TextStyle(
                                           color: Cores.preto,
-                                          fontSize: 20,
+                                          fontSize: 16,
                                           fontWeight: FontWeight.bold,
                                         ),
                                       ),
@@ -392,7 +397,7 @@ class _CadastroParticipantesState extends State<CadastroParticipantes> {
                                         'UF: ',
                                         style: TextStyle(
                                           color: Cores.preto,
-                                          fontSize: 20,
+                                          fontSize: 18,
                                           fontWeight: FontWeight.bold,
                                         ),
                                       ),
@@ -400,7 +405,7 @@ class _CadastroParticipantesState extends State<CadastroParticipantes> {
                                         ufController.text,
                                         style: const TextStyle(
                                           color: Cores.preto,
-                                          fontSize: 18,
+                                          fontSize: 16,
                                         ),
                                       ),
                                     ],
@@ -527,10 +532,17 @@ class _CadastroParticipantesState extends State<CadastroParticipantes> {
                                             child: CampoFormulario(
                                               label: 'UF *',
                                               controller: ufController,
-                                              mask: MaskTextInputFormatter(
-                                                mask: '##',
-                                                filter: {'#': RegExp(r'[A-Z]')},
-                                              ),
+                                              onChanged: (value) {
+                                                if (value.length == 2) {
+                                                  ufController.text =
+                                                      value.toUpperCase();
+                                                }
+                                              },
+                                              mask: FormatarTexto(),
+                                              // mask: MaskTextInputFormatter(
+                                              //   mask: '##',
+                                              //   filter: {'#': RegExp(r'[a-z]')},
+                                              // ),
                                             ),
                                           ),
                                         ],
@@ -543,7 +555,7 @@ class _CadastroParticipantesState extends State<CadastroParticipantes> {
                                     ],
                                   ),
                                   Padding(
-                                    padding: const EdgeInsets.all(20),
+                                    padding: const EdgeInsets.all(10),
                                     child: CupertinoButton(
                                       onPressed: () {
                                         // widget.onClique();
@@ -586,92 +598,98 @@ class _CadastroParticipantesState extends State<CadastroParticipantes> {
                                 ],
                               ),
                       ),
-                SizedBox(height: 20),
-                AbsorbPointer(
-                  absorbing: !participanteCadastrado,
-                  child: Opacity(
-                    opacity: !participanteCadastrado ? 0.5 : 1,
-                    child: Column(
-                      children: [
-                        const Padding(
-                          padding:
-                              EdgeInsets.symmetric(vertical: 5, horizontal: 10),
-                          child: Text(
-                            'Cadastro de Cupons',
-                            style: TextStyle(
-                              color: Cores.preto,
-                              fontSize: 24,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                // SizedBox(height: 5),
+                widget.participante != null
+                    ? AbsorbPointer(
+                        absorbing: !participanteCadastrado,
+                        child: Opacity(
+                          opacity: !participanteCadastrado ? 0.5 : 1,
+                          child: Column(
                             children: [
-                              Expanded(
-                                child: SizedBox(
-                                  height: 50,
-                                  child: TextField(
-                                    controller: cupomController,
-                                    decoration: InputDecoration(
-                                      labelText: "Cupom",
-                                      labelStyle: const TextStyle(
-                                        color: Cores.preto,
-                                        fontSize: 18,
-                                      ),
-                                      border: OutlineInputBorder(
-                                        borderRadius: BorderRadius.circular(10),
-                                      ),
-                                    ),
+                              const Padding(
+                                padding: EdgeInsets.symmetric(
+                                    vertical: 5, horizontal: 10),
+                                child: Text(
+                                  'Cadastro de Cupons',
+                                  style: TextStyle(
+                                    color: Cores.preto,
+                                    fontSize: 24,
+                                    fontWeight: FontWeight.bold,
                                   ),
                                 ),
                               ),
                               Padding(
                                 padding: const EdgeInsets.all(8.0),
-                                child: CupertinoButton(
-                                  onPressed: () {
-                                    cadastrarCupon();
-                                  },
-                                  padding: const EdgeInsets.symmetric(
-                                      vertical: 15, horizontal: 30),
-                                  color: Cores.verde,
-                                  child: const Text(
-                                    'Adicionar',
-                                    style: TextStyle(
-                                      color: Cores.branco,
-                                      fontSize: 18,
+                                child: Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    //Definir texto como sempre Maiusculo quando digitado
+                                    Expanded(
+                                      child: SizedBox(
+                                        height: 50,
+                                        child: TextField(
+                                          inputFormatters: [FormatarTexto()],
+                                          controller: cupomController,
+                                          decoration: InputDecoration(
+                                            labelText: "Cupom",
+                                            labelStyle: const TextStyle(
+                                              color: Cores.preto,
+                                              fontSize: 18,
+                                            ),
+                                            border: OutlineInputBorder(
+                                              borderRadius:
+                                                  BorderRadius.circular(10),
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                    Padding(
+                                      padding: const EdgeInsets.all(8.0),
+                                      child: CupertinoButton(
+                                        onPressed: () {
+                                          cadastrarCupon();
+                                        },
+                                        padding: const EdgeInsets.symmetric(
+                                            vertical: 15, horizontal: 30),
+                                        color: Cores.verde,
+                                        child: const Text(
+                                          'Adicionar',
+                                          style: TextStyle(
+                                            color: Cores.branco,
+                                            fontSize: 18,
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              Row(
+                                children: [
+                                  Padding(
+                                    padding: const EdgeInsets.symmetric(
+                                      horizontal: 10,
+                                      vertical: 10,
+                                    ),
+                                    child: TextButton(
+                                      onPressed: () {
+                                        widget.listarCupons();
+                                      },
+                                      child: const Text(
+                                        "Meus Cupons >",
+                                        style: TextStyle(color: Cores.preto),
+                                      ),
                                     ),
                                   ),
-                                ),
+                                ],
                               ),
                             ],
                           ),
                         ),
-                        Row(
-                          children: [
-                            Padding(
-                              padding: const EdgeInsets.symmetric(
-                                horizontal: 10,
-                                vertical: 10,
-                              ),
-                              child: TextButton(
-                                onPressed: () {
-                                  widget.listarCupons();
-                                },
-                                child: const Text(
-                                  "Meus Cupons >",
-                                  style: TextStyle(color: Cores.preto),
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
+                      )
+                    : const SizedBox(),
                 Row(
                   children: [
                     Padding(
