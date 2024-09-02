@@ -6,6 +6,7 @@ import 'package:promocoes/models/cupom_model.dart';
 
 import '../../api/api_promocao.dart';
 import '../../classes/classes.dart';
+import '../../classes/formatar_texto.dart';
 import '../widgets/loading.dart';
 
 class ListarCupons extends StatefulWidget {
@@ -38,6 +39,7 @@ class _ListarCuponsState extends State<ListarCupons> {
     var response =
         await ApiPromocao().getParticipanteCupons(codigoParticipante);
     if (response.statusCode == 200) {
+      cupons.clear();
       var decoded = json.decode(response.body);
       for (var item in decoded) {
         cupons.add(CupomModel.fromJson(item));
@@ -148,6 +150,7 @@ class _ListarCuponsState extends State<ListarCupons> {
                       child: SizedBox(
                         height: 50,
                         child: TextField(
+                          inputFormatters: [FormatarTexto()],
                           controller: cupomController,
                           decoration: InputDecoration(
                             labelText: "Cupom",
