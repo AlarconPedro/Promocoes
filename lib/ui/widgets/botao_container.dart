@@ -42,18 +42,18 @@ class _BotaoContainerState extends State<BotaoContainer> {
           curve: Curves.easeInOut,
           padding: EdgeInsets.only(bottom: hover ? 35 : 0),
           width: Globais.layout == Layout.mobile
-              ? 200
+              ? 150
               : Globais.layout == Layout.smartphone
-                  ? 220
+                  ? 200
                   : Globais.layout == Layout.tablet
                       ? 250
                       : 300,
           height: Globais.layout == Layout.mobile
-              ? 130
+              ? 100
               : Globais.layout == Layout.smartphone
-                  ? 150
+                  ? 130
                   : Globais.layout == Layout.tablet
-                      ? 180
+                      ? 150
                       : 200,
           decoration: BoxDecoration(
             color: Cores.marrom,
@@ -84,7 +84,7 @@ class _BotaoContainerState extends State<BotaoContainer> {
                 widget.icone,
                 // CupertinoIcons.person_add_solid,
                 color: Cores.branco,
-                size: 50,
+                size: 40,
               ),
               const SizedBox(height: 10),
               Text(
@@ -92,7 +92,7 @@ class _BotaoContainerState extends State<BotaoContainer> {
                 // 'Cadastrar-se',
                 style: const TextStyle(
                   color: Cores.branco,
-                  fontSize: 20,
+                  fontSize: 18,
                 ),
               ),
             ],

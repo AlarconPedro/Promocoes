@@ -29,10 +29,7 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       // backgroundColor: Cores.marromMedio,
       backgroundColor: Cores.branco,
-      body:
-          // Column(
-          //   children: [
-          SingleChildScrollView(
+      body: SingleChildScrollView(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
@@ -41,25 +38,49 @@ class _HomePageState extends State<HomePage> {
               color: Cores.branco,
               child: Column(
                 children: [
-                  Padding(
-                    padding:
-                        const EdgeInsets.only(left: 10, right: 10, bottom: 10),
-                    child: Container(
-                      width: MediaQuery.of(context).size.width * 0.9,
-                      // height: MediaQuery.of(context).size.height * 0.3,
-                      decoration: BoxDecoration(
-                        // color: Cores.marrom,
-                        color: Cores.branco,
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                      child: ClipRRect(
-                        // borderRadius: BorderRadius.circular(10),
-                        child: Image.asset(
-                          'images/banner_grande.png',
-                          fit: BoxFit.fitHeight,
+                  Row(
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.only(
+                            left: 0, right: 0, bottom: 10),
+                        child: Container(
+                          width: MediaQuery.of(context).size.width * 0.3,
+                          // height: MediaQuery.of(context).size.height * 0.3,
+                          decoration: BoxDecoration(
+                            // color: Cores.marrom,
+                            color: Cores.branco,
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                          child: ClipRRect(
+                            // borderRadius: BorderRadius.circular(10),
+                            child: Image.asset(
+                              'images/pix.jpeg',
+                              fit: BoxFit.fitHeight,
+                            ),
+                          ),
                         ),
                       ),
-                    ),
+                      Padding(
+                        padding: const EdgeInsets.only(
+                            left: 0, right: 0, bottom: 10),
+                        child: Container(
+                          width: MediaQuery.of(context).size.width * 0.7,
+                          // height: MediaQuery.of(context).size.height * 0.3,
+                          decoration: BoxDecoration(
+                            // color: Cores.marrom,
+                            color: Cores.branco,
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                          child: ClipRRect(
+                            // borderRadius: BorderRadius.circular(10),
+                            child: Image.asset(
+                              'images/banner_grande.png',
+                              fit: BoxFit.fitHeight,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
                   ),
                 ],
               ),
@@ -178,7 +199,6 @@ class _HomePageState extends State<HomePage> {
                       ),
               ),
             ),
-            // ),
           ],
         ),
       ),
