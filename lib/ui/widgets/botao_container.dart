@@ -42,19 +42,19 @@ class _BotaoContainerState extends State<BotaoContainer> {
           curve: Curves.easeInOut,
           padding: EdgeInsets.only(bottom: hover ? 35 : 0),
           width: Globais.layout == Layout.mobile
-              ? 150
+              ? 80
               : Globais.layout == Layout.smartphone
-                  ? 200
+                  ? 150
                   : Globais.layout == Layout.tablet
-                      ? 250
-                      : 300,
+                      ? 180
+                      : 210,
           height: Globais.layout == Layout.mobile
-              ? 100
+              ? 70
               : Globais.layout == Layout.smartphone
-                  ? 130
+                  ? 100
                   : Globais.layout == Layout.tablet
-                      ? 150
-                      : 200,
+                      ? 120
+                      : 150,
           decoration: BoxDecoration(
             color: Cores.marrom,
             borderRadius: BorderRadius.circular(10),
@@ -84,7 +84,13 @@ class _BotaoContainerState extends State<BotaoContainer> {
                 widget.icone,
                 // CupertinoIcons.person_add_solid,
                 color: Cores.branco,
-                size: 40,
+                size: Globais.layout == Layout.mobile
+                    ? 20
+                    : Globais.layout == Layout.smartphone
+                        ? 30
+                        : Globais.layout == Layout.tablet
+                            ? 40
+                            : 50,
               ),
               const SizedBox(height: 10),
               Text(
