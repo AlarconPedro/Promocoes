@@ -51,9 +51,133 @@ class _HomePageState extends State<HomePage> {
                           ),
                         ),
                       ),
+                    ],
+                  )
+                : Column(
+                    children: [
+                      Container(
+                        width: MediaQuery.of(context).size.width,
+                        // height: MediaQuery.of(context).size.height * 0.3,
+                        decoration: BoxDecoration(
+                          // color: Cores.marrom,
+                          color: Cores.branco,
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                        child: ClipRRect(
+                          // borderRadius: BorderRadius.circular(10),
+                          child: Image.asset(
+                            'images/banner_grande.png',
+                            fit: BoxFit.fitWidth,
+                          ),
+                        ),
+                      ),
+                      const SizedBox(height: 10),
+                    ],
+                  ),
+            largura > 1000
+                ? Column(
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.only(top: 100),
+                        child: SizedBox(
+                          //definir altura de acordo com o espaço disponível
+                          // height: MediaQuery.of(context).size.height * 0.3,
+                          width: MediaQuery.of(context).size.width,
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              SizedBox(
+                                width: MediaQuery.of(context).size.width * 0.3,
+                                child: const Expanded(
+                                  child: Column(
+                                    children: [
+                                      Text(
+                                        "Como Funciona",
+                                        style: TextStyle(
+                                          fontSize: 20,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                      Text(
+                                        "Mussum Ipsum, cacilds vidis litro abertis."
+                                        "Posuere libero varius. Nullam a nisl ut ante blandit hendrerit. "
+                                        "Aenean sit amet nisi. Nullam volutpat risus nec leo commodo, ut interdum diam laoreet. "
+                                        "Sed non consequat odio. Si u mundo tá muito paradis? Toma um mé que o mundo vai girarzis! "
+                                        "Manduma pindureta quium dia nois paga.",
+                                        textAlign: TextAlign.justify,
+                                        softWrap: true,
+                                        style: TextStyle(
+                                          fontSize: 16,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                              SizedBox(
+                                width: MediaQuery.of(context).size.width * 0.3,
+                                child: const Expanded(
+                                  child: Column(
+                                    children: [
+                                      Text(
+                                        "Como Participar",
+                                        style: TextStyle(
+                                          fontSize: 20,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                      Text(
+                                        "Mussum Ipsum, cacilds vidis litro abertis."
+                                        "Posuere libero varius. Nullam a nisl ut ante blandit hendrerit. "
+                                        "Aenean sit amet nisi. Nullam volutpat risus nec leo commodo, ut interdum diam laoreet. "
+                                        "Sed non consequat odio. Si u mundo tá muito paradis? Toma um mé que o mundo vai girarzis! "
+                                        "Manduma pindureta quium dia nois paga.",
+                                        textAlign: TextAlign.justify,
+                                        softWrap: true,
+                                        style: TextStyle(
+                                          fontSize: 16,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                              SizedBox(
+                                width: MediaQuery.of(context).size.width * 0.3,
+                                child: const Expanded(
+                                  child: Column(
+                                    children: [
+                                      Text(
+                                        "Como Saber se Ganhei",
+                                        style: TextStyle(
+                                          fontSize: 20,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                      Text(
+                                        "Mussum Ipsum, cacilds vidis litro abertis."
+                                        "Posuere libero varius. Nullam a nisl ut ante blandit hendrerit. "
+                                        "Aenean sit amet nisi. Nullam volutpat risus nec leo commodo, ut interdum diam laoreet. "
+                                        "Sed non consequat odio. Si u mundo tá muito paradis? Toma um mé que o mundo vai girarzis! "
+                                        "Manduma pindureta quium dia nois paga.",
+                                        textAlign: TextAlign.justify,
+                                        softWrap: true,
+                                        style: TextStyle(
+                                          fontSize: 16,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        crossAxisAlignment: CrossAxisAlignment.end,
+                        crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
                           Expanded(
                             flex: 2,
@@ -123,8 +247,7 @@ class _HomePageState extends State<HomePage> {
                               ? const Expanded(child: SizedBox())
                               : const SizedBox(),
                           Padding(
-                            padding: const EdgeInsets.only(
-                                left: 10, right: 0, bottom: 0, top: 360),
+                            padding: const EdgeInsets.all(10),
                             child: Container(
                               width: MediaQuery.of(context).size.width * 0.3,
                               // height: MediaQuery.of(context).size.height * 0.3,
@@ -149,157 +272,18 @@ class _HomePageState extends State<HomePage> {
                 : Column(
                     children: [
                       Padding(
-                        padding: const EdgeInsets.only(
-                            left: 0, right: 0, bottom: 10),
-                        child: Container(
-                          width: MediaQuery.of(context).size.width,
-                          // height: MediaQuery.of(context).size.height * 0.3,
-                          decoration: BoxDecoration(
-                            // color: Cores.marrom,
-                            color: Cores.branco,
-                            borderRadius: BorderRadius.circular(10),
-                          ),
-                          child: ClipRRect(
-                            // borderRadius: BorderRadius.circular(10),
-                            child: Image.asset(
-                              'images/pix.jpeg',
-                              fit: BoxFit.fitHeight,
-                            ),
-                          ),
-                        ),
-                      ),
-                      Container(
-                        width: MediaQuery.of(context).size.width,
-                        // height: MediaQuery.of(context).size.height * 0.3,
-                        decoration: BoxDecoration(
-                          // color: Cores.marrom,
-                          color: Cores.branco,
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                        child: ClipRRect(
-                          // borderRadius: BorderRadius.circular(10),
-                          child: Image.asset(
-                            'images/banner_grande.png',
-                            fit: BoxFit.fitWidth,
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-            largura > 1000
-                ? Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 100),
-                    child: SizedBox(
-                      //definir altura de acordo com o espaço disponível
-                      height: MediaQuery.of(context).size.height * 0.3,
-                      width: MediaQuery.of(context).size.width,
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          SizedBox(
-                            width: MediaQuery.of(context).size.width * 0.3,
-                            child: const Expanded(
-                              child: Column(
-                                children: [
-                                  Text(
-                                    "Como Funciona",
-                                    style: TextStyle(
-                                      fontSize: 20,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                  Text(
-                                    "Mussum Ipsum, cacilds vidis litro abertis."
-                                    "Posuere libero varius. Nullam a nisl ut ante blandit hendrerit. "
-                                    "Aenean sit amet nisi. Nullam volutpat risus nec leo commodo, ut interdum diam laoreet. "
-                                    "Sed non consequat odio. Si u mundo tá muito paradis? Toma um mé que o mundo vai girarzis! "
-                                    "Manduma pindureta quium dia nois paga.",
-                                    textAlign: TextAlign.justify,
-                                    softWrap: true,
-                                    style: TextStyle(
-                                      fontSize: 16,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ),
-                          SizedBox(
-                            width: MediaQuery.of(context).size.width * 0.3,
-                            child: const Expanded(
-                              child: Column(
-                                children: [
-                                  Text(
-                                    "Como Participar",
-                                    style: TextStyle(
-                                      fontSize: 20,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                  Text(
-                                    "Mussum Ipsum, cacilds vidis litro abertis."
-                                    "Posuere libero varius. Nullam a nisl ut ante blandit hendrerit. "
-                                    "Aenean sit amet nisi. Nullam volutpat risus nec leo commodo, ut interdum diam laoreet. "
-                                    "Sed non consequat odio. Si u mundo tá muito paradis? Toma um mé que o mundo vai girarzis! "
-                                    "Manduma pindureta quium dia nois paga.",
-                                    textAlign: TextAlign.justify,
-                                    softWrap: true,
-                                    style: TextStyle(
-                                      fontSize: 16,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ),
-                          SizedBox(
-                            width: MediaQuery.of(context).size.width * 0.3,
-                            child: const Expanded(
-                              child: Column(
-                                children: [
-                                  Text(
-                                    "Como Saber se Ganhei",
-                                    style: TextStyle(
-                                      fontSize: 20,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                  Text(
-                                    "Mussum Ipsum, cacilds vidis litro abertis."
-                                    "Posuere libero varius. Nullam a nisl ut ante blandit hendrerit. "
-                                    "Aenean sit amet nisi. Nullam volutpat risus nec leo commodo, ut interdum diam laoreet. "
-                                    "Sed non consequat odio. Si u mundo tá muito paradis? Toma um mé que o mundo vai girarzis! "
-                                    "Manduma pindureta quium dia nois paga.",
-                                    textAlign: TextAlign.justify,
-                                    softWrap: true,
-                                    style: TextStyle(
-                                      fontSize: 16,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  )
-                : Column(
-                    children: [
-                      Padding(
                         padding: const EdgeInsets.symmetric(vertical: 10),
                         child: SizedBox(
                           //definir altura de acordo com o espaço disponível
-                          height: 1000,
+                          height: largura < 680 ? 1200 : 1500,
                           width: MediaQuery.of(context).size.width,
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             crossAxisAlignment: CrossAxisAlignment.center,
                             children: [
-                              SizedBox(
-                                width: MediaQuery.of(context).size.width * 0.3,
-                                child: const Expanded(
+                              const Padding(
+                                padding: EdgeInsets.all(10),
+                                child: Expanded(
                                   child: Column(
                                     children: [
                                       Text(
@@ -325,9 +309,9 @@ class _HomePageState extends State<HomePage> {
                                   ),
                                 ),
                               ),
-                              SizedBox(
-                                width: MediaQuery.of(context).size.width * 0.3,
-                                child: const Expanded(
+                              const Padding(
+                                padding: EdgeInsets.all(10),
+                                child: Expanded(
                                   child: Column(
                                     children: [
                                       Text(
@@ -351,6 +335,109 @@ class _HomePageState extends State<HomePage> {
                                       ),
                                     ],
                                   ),
+                                ),
+                              ),
+                              const Padding(
+                                padding: EdgeInsets.all(10),
+                                child: SizedBox(
+                                  child: Expanded(
+                                    child: Column(
+                                      children: [
+                                        Text(
+                                          "Como Saber se Ganhei",
+                                          style: TextStyle(
+                                            fontSize: 20,
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                        ),
+                                        Text(
+                                          "Mussum Ipsum, cacilds vidis litro abertis."
+                                          "Posuere libero varius. Nullam a nisl ut ante blandit hendrerit. "
+                                          "Aenean sit amet nisi. Nullam volutpat risus nec leo commodo, ut interdum diam laoreet. "
+                                          "Sed non consequat odio. Si u mundo tá muito paradis? Toma um mé que o mundo vai girarzis! "
+                                          "Manduma pindureta quium dia nois paga.",
+                                          textAlign: TextAlign.justify,
+                                          softWrap: true,
+                                          style: TextStyle(
+                                            fontSize: 16,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.all(10),
+                                child: Container(
+                                  width: MediaQuery.of(context).size.width,
+                                  // height: MediaQuery.of(context).size.height * 0.3,
+                                  decoration: BoxDecoration(
+                                    // color: Cores.marrom,
+                                    color: Cores.branco,
+                                    borderRadius: BorderRadius.circular(10),
+                                  ),
+                                  child: ClipRRect(
+                                    // borderRadius: BorderRadius.circular(10),
+                                    child: Image.asset(
+                                      'images/pix.jpeg',
+                                      fit: BoxFit.fitHeight,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.all(10),
+                                child: Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    BotaoContainer(
+                                      icone: CupertinoIcons.add_circled_solid,
+                                      titulo: 'Cadastrar Cupom',
+                                      onTap: () {
+                                        Navigator.push(
+                                          context,
+                                          CupertinoDialogRoute(
+                                            builder: (context) =>
+                                                const CadastroParticipantesPage(),
+                                            context: context,
+                                          ),
+                                        );
+                                      },
+                                    ),
+                                    BotaoContainer(
+                                      icone: CupertinoIcons.tickets_fill,
+                                      titulo: 'Meus Cupons',
+                                      onTap: () {
+                                        Navigator.push(
+                                          context,
+                                          CupertinoDialogRoute(
+                                            builder: (context) =>
+                                                const MeusCuponsPage(),
+                                            context: context,
+                                          ),
+                                        );
+                                      },
+                                    ),
+                                    BotaoContainer(
+                                      icone: CupertinoIcons.gift_fill,
+                                      titulo: 'Sorteios',
+                                      onTap: () {
+                                        Navigator.push(
+                                          context,
+                                          CupertinoDialogRoute(
+                                            builder: (context) => SorteiosPage(
+                                              onClique: () {
+                                                Navigator.pop(context);
+                                              },
+                                            ),
+                                            context: context,
+                                          ),
+                                        );
+                                      },
+                                    ),
+                                  ],
                                 ),
                               ),
                             ],

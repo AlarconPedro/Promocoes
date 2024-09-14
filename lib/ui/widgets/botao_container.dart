@@ -42,14 +42,14 @@ class _BotaoContainerState extends State<BotaoContainer> {
           curve: Curves.easeInOut,
           padding: EdgeInsets.only(bottom: hover ? 35 : 0),
           width: Globais.layout == Layout.mobile
-              ? 80
+              ? 100
               : Globais.layout == Layout.smartphone
-                  ? 150
+                  ? 120
                   : Globais.layout == Layout.tablet
                       ? 180
                       : 210,
           height: Globais.layout == Layout.mobile
-              ? 70
+              ? 90
               : Globais.layout == Layout.smartphone
                   ? 100
                   : Globais.layout == Layout.tablet
@@ -96,9 +96,16 @@ class _BotaoContainerState extends State<BotaoContainer> {
               Text(
                 widget.titulo,
                 // 'Cadastrar-se',
-                style: const TextStyle(
+                textAlign: TextAlign.center,
+                style: TextStyle(
                   color: Cores.branco,
-                  fontSize: 18,
+                  fontSize: Globais.layout == Layout.mobile
+                      ? 14
+                      : Globais.layout == Layout.smartphone
+                          ? 16
+                          : Globais.layout == Layout.tablet
+                              ? 18
+                              : 20,
                 ),
               ),
             ],
