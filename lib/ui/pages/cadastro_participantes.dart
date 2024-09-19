@@ -514,11 +514,11 @@ class _CadastroParticipantesState extends State<CadastroParticipantes> {
                                           ),
                                         ],
                                       ),
-                                      CampoFormulario(
-                                        label: 'Endereço',
-                                        controller: enderecoController,
-                                        mask: MaskTextInputFormatter(),
-                                      ),
+                                      // CampoFormulario(
+                                      //   label: 'Endereço',
+                                      //   controller: enderecoController,
+                                      //   mask: MaskTextInputFormatter(),
+                                      // ),
                                       Row(
                                         children: [
                                           Expanded(
@@ -547,11 +547,11 @@ class _CadastroParticipantesState extends State<CadastroParticipantes> {
                                           ),
                                         ],
                                       ),
-                                      CampoFormulario(
-                                        label: 'E-mail',
-                                        controller: emailController,
-                                        mask: MaskTextInputFormatter(),
-                                      ),
+                                      // CampoFormulario(
+                                      //   label: 'E-mail',
+                                      //   controller: emailController,
+                                      //   mask: MaskTextInputFormatter(),
+                                      // ),
                                     ],
                                   ),
                                   Padding(
