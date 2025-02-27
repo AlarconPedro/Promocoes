@@ -2,15 +2,17 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:promocoes/ui/pages/final_promocao.dart';
+import 'package:url_strategy/url_strategy.dart';
 
 void main() {
+  setPathUrlStrategy();
   runApp(
     MaterialApp(
       scrollBehavior: Scroll(),
       debugShowCheckedModeBanner: false,
-      routes: {
-        '/cupom': (context) => const FinalPromocao(),
-      },
+      // routes: {
+      //   '/cupom': (context) => const FinalPromocao(),
+      // },
       // home: const HomePage(),
       home: const FinalPromocao(),
     ),
